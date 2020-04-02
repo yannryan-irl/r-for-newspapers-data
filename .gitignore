@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data/EW1891_regcounties
+data/Spre1890_scocounties
+data/BritishAndIrishNewspapersTitleList_20191118.csv
+news_sample_dataframe
+tokenised_news_sample

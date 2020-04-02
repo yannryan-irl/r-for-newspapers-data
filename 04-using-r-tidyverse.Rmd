@@ -1,0 +1,319 @@
+# Quick introduction to R and the tidyverse
+
+The motivation behind this book was to provide a way to access and analyse newspaper data using a programming language that I am familiar with. The reason is simple: you write what you know, and I know R best. With its interface, R-Studio, I think it has the easiest transition from someone used to spreadsheet programs, and you'll realise that most of what you do is filter, sort, count and select columns in a data format called a dataframe. 
+
+## What is R and why should you use it?
+I think R and R-Studio have the easiest transition from someone used to Excel, and you'll realise that most of what you do is filter, sort, count and select columns in a data format called a dataframe. 
+
+A dataframe is basically a spreadsheet - it contains rows with observations, and columns with variables. Each row is generally a _thing_, for want of a better word. A thing that wants to be counted, either by summarising it as a more general thing, or turning it into something else and then counting it, or removing some of the things first and then counting the leftovers. For me, thing might be a record of a newspaper title, or a newspaper article (and its text), or it might be a single word.
+
+You can do a lot more interesting tasks with a thing in a dataframe. A thing might be a single polygon, in a huge dataframe of polygons or lines, all of which add up to a map, which we can then count, sort, filter and render as an image or even an interactive.
+
+## Using R
+
+### Base R commands
+I don't use them very much, but R does have a bunch of very well-developed commands for doing the sorting, filtering and counting mentioned above. If you want to learn base R, I recommend the following:
+
+It is worth understanding the main types of data that you'll come across, in your environment window. First, you'll have dataframes. These are the spreadsheet-like objects which you'll use in most analyses. They have rows and columns. 
+
+Next are variables. A variable is assigned to a name, and then used for various purposes. 
+
+You'll often hear of an item called a vector. A vector is like a python list, if that means anything to you. A vector can be a single column in a dataframe (spreadsheet), which means they are used very often in R to manipulate data. A vector can have different types: for example, a character vector looks like this ```c("apples", "bananas", "oranges")```
+
+A dataframe is just a bunch of vectors side by side.
+
+A vector is created with the command ```c()```, with each item in the vector placed between the brackets, and followed by a comma. If your vector is a vector of words, the words need to be in inverted commas or quotation marks. 
+
+```{r}
+
+fruit = c("apples", "bananas", "oranges", "apples")
+colour = c("green", "yellow", "orange", "red")
+amount = c(2,5,10,8)
+```
+
+You can create a dataframe using the ```data.frame()``` command. You just need to pass the function each of your vectors, which will become your columns. 
+
+```{r}
+fruit_data = data.frame(fruit,colour,amount, stringsAsFactors = FALSE)
+```
+
+Notice above that the third column, the amount, has <int> under it instead of <chr>. That's because R is treating it as a number, rather than a character. This means you can add them up and do all sorts of other mathy type things to them. 
+
+All the items in a vector are _coerced_ to the same type. So if you try to make a vector with a combination of numbers and strings, the numbers will be converted to strings. I wouldn't worried _too_ much about that for now.
+
+So for example if you create this vector, the numbers will get converted into strings.
+```{r}
+fruit = c("apples", 5, "oranges", 3)
+fruit
+```
+
+
+
+Anyway, that's a dataframe. 
+
+
+## Tidyverse
+
+Most of the work in these notebooks is done using a set of packages developed for R called the 'tidyverse'. These enhance and improve a large range of R functions, with much nice syntax - and they're faster too. It's really a bunch of individual packages for sorting, filtering and plotting data frames. 
+They can be divided into a number of diferent categories.
+
+All these functions work in the same way. The first argument is the thing you want to operate on. This is nearly always a data frame. After come other arguments, which are often specific columns, or certain variables you want to do something with. 
+
+You installed the package in the last notebook. Make sure the library is loaded by running the following in an R chunk in a notebook:
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+
+Here are a couple of the most important ones
+
+### select(), pull()
+```select()``` allows you to select columns. You can use names or numbers to pick the columns, and you can use a ```-``` sign to select everything _but_ a given column.
+
+Using the fruit data frame we created above:
+We can select just the fruit and colour columns:
+
+```{r}
+select(fruit_data, fruit, colour)
+```
+
+Select everything but the colour column:
+
+```{r}
+select(fruit_data, -colour)
+```
+
+Select the first two columns:
+
+```{r}
+select(fruit_data, 1:2)
+```
+
+### group_by(), tally(), summarise()
+
+The next group of functions group things together and count them. Sounds boring but you would be amazed by how much of data science just seems to be doing those two things in various combinations. 
+
+```group_by()``` puts rows with the same value in a column of your dataframe into a group. Once they're in a group, you can count them or summarise them by another variable. 
+
+First you need to create a new dataframe with the grouped fruit.
+
+```{r}
+grouped_fruit = group_by(fruit_data, fruit)
+```
+
+Next we use ```tally()```. This counts all the instances of each fruit group. 
+
+```{r}
+tally(grouped_fruit)
+```
+See? Now the apples are grouped together rather than being two separate rows, and there's a new column called ```n```, which contains the result of the count.
+
+If we specify that we want to count by something else, we can add that in as a 'weight', by adding ```wt =``` as an argument in the function.
+
+```{r}
+tally(grouped_fruit, wt = amount)
+```
+
+That counts the amounts of each fruit, ignoring the colour. 
+
+### filter()
+
+Another quite obviously useful function. This filters the dataframe based on a condition which you set within the function. The first argument is the data to be filtered. The second is a condition (or multiple condition). The function will return every row where that condition is true.
+
+Just red fruit:
+
+```{r}
+filter(fruit_data, colour == 'red')
+```
+
+Just fruit with at least 5 pieces:
+
+```{r}
+filter(fruit_data, amount >=5)
+```
+
+### sort(), arrange(), top_n()
+
+Another useful set of functions, often you want to sort things. The function ```arrange()``` does this very nicely. You specify the data frame, and the variable you would like to sort by. 
+
+```{r}
+arrange(fruit_data, amount)
+```
+
+Sorting is ascending by default, but you can specify descending using ```desc()```:
+
+```{r}
+arrange(fruit_data, desc(amount))
+```
+
+If you `sort```arrange()``` by a list of characters, you'll get alphabetical order:
+
+```{r}
+arrange(fruit_data, fruit)
+```
+
+You can sort by multiple things:
+
+```{r}
+arrange(fruit_data, fruit, desc(amount))
+```
+
+Notice that now red apples are first.
+
+### left_join(), inner_join(), anti_join()
+
+### Piping
+
+Another great feature of the tidyverse is that you can 'pipe' commands through a bunch of functions. This means that you can do one operate, and pass the result to another operation. The previous dataframe is passed as the first argument of the next function by using the pipe ```%>%``` command. It works like this:
+
+```{r}
+fruit_data %>% 
+  filter(colour != 'yellow') %>% # remove any yellow colour fruit
+  group_by(fruit) %>% # group the fruit by type
+  tally(amount) %>% # count each group
+  arrange(desc(n)) # arrange in descending order of the count
+```
+
+That code block, written in prose: "take fruit data, remove any yellow colour fruit, count the fruits by type and amount, and arrange in descending order of the total"
+
+### Plotting using ggplot()
+
+The tidyverse includes a pretty great plotting library called ggplot2. This can be used by piping your dataframe to a function called ```ggplot()```. The basic idea is that you add your data, then you can add plot elements which are called geoms. Some common ones are ```geom_line()```, ```geom_bar()``` and ```geom_point()```. 
+
+To the geom function you add aesthetics, which is basically telling the function which bits of your data should be responsible for which parts of the visualisation. These are added using ```aes()```. I'll explain a bit more about some of these aesthetics as I go along.
+
+As an example:
+
+Bar chart of different types of fruit (one each of bananas and oranges, two types of apple)
+
+```{r fig.cap = 'fruit'}
+fruit_data %>% ggplot() + geom_bar(aes(x = fruit))
+```
+Counting the total amount of fruit:
+
+```{r fig.cap="totals"}
+fruit_data %>% ggplot() + geom_bar(aes(x = fruit, weight = amount))
+```
+
+Charting amounts and fruit colours:
+
+```{r fig.cap="grouped fruit"}
+fruit_data %>% ggplot() + geom_bar(aes(x = fruit, weight = amount, fill = colour)) 
+```
+
+And just because it annoys me having random colours, we can map them to the actual colours:
+
+```{r fig.cap="Fruit chart with nice colours"}
+fruit_data %>% 
+  ggplot() + 
+  geom_bar(aes(x = fruit, weight = amount, fill = colour)) + 
+  scale_fill_manual(values = c("orange" = "orange", 
+                               "green" = "#8db600", 
+                               "red" = "#ff0800", 
+                               "yellow" = "#ffe135"))
+```
+
+
+
+### Doing this with newspaper data
+Who cares about fruit? Nobody, that's who. We want newspaper data! Let's load a dataset of metadata for all the titles held by the library, and do some counting and sorting. 
+
+Download from here: [British Library Research Repository](https://doi.org/10.23636/1136)
+
+You would need to extract into your project folder first, if you're following along:
+
+```read_csv``` reads the csv from file.
+
+```{r}
+title_list = read_csv('data/BritishAndIrishNewspapersTitleList_20191118.csv')
+```
+
+Select some particularly relevant columns:
+
+```{r}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication)
+```
+
+Arrange in order of the latest date of publication, and then by the first date of publication:
+
+```{r}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication) %>%
+  arrange(desc(last_date_held), first_date_held)
+```
+
+Group and count by country of publication:
+
+```{r}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication) %>%
+  arrange(desc(last_date_held)) %>% 
+  group_by(country_of_publication) %>%
+  tally()
+```
+
+Arrange again, this time in descending order of number of titles for each country:
+
+```{r}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication) %>%
+  arrange(desc(last_date_held)) %>% 
+  group_by(country_of_publication) %>%
+  tally() %>%
+  arrange(desc(n))
+```
+Filter only those with more than 100 titles:
+
+```{r}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication) %>%
+  arrange(desc(last_date_held)) %>% 
+  group_by(country_of_publication) %>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  filter(n>=100)
+```
+
+Make a simple bar chart:
+
+```{r fig.cap = 'barchart'}
+title_list %>% 
+  select(publication_title, 
+         first_date_held, 
+         last_date_held, 
+         country_of_publication) %>%
+  arrange(desc(last_date_held)) %>% 
+  group_by(country_of_publication) %>%
+  tally() %>%
+  arrange(desc(n)) %>% 
+  filter(n>=100) %>% 
+  ggplot() + 
+  geom_bar(aes(x = country_of_publication, weight = n))
+```
+
+So that's a very quick introduction to R. There's loads of places to learn more. 
+
+[R-studio cheat sheets](https://www.rstudio.com/resources/cheatsheets/)
+
+[The Pirate's Guide to R, a good beginners guide to base R](https://bookdown.org/ndphillips/YaRrr/)
+
+[R for data science, which teaches the tidyverse in detail](https://r4ds.had.co.nz)
+
+[Learn how to make a book like this using Bookdown](https://bookdown.org/yihui/bookdown/introduction.html)

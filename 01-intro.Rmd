@@ -1,0 +1,83 @@
+# Introduction
+
+```{r include=FALSE}
+knitr::opts_chunk$set(fig.width=8, fig.height=6)
+```
+
+
+## Unlocking the past with newspaper data
+
+Imagine a historian, similar to that described in the Historian's Macroscope, sits down to do some research. She is interested in the reception of news about the Crimean War, in Manchester. But where to start? Well, first she narrows down the list of newspapers to consult using an interactive map. For this research, she'll look at everything published in Manchester between 1853 and 1857. But also, she's interested in a more fine-grained group of titles: this will specifically be a study of the established press: so those that lasted a long time, at least fifty years in total. And while she's at it, she'll specify that she's only interested in the Liberal press, using an enriched database of political leanings.
+
+List of titles in hand, she goes the BL Open Repository and finds the openly accessible ones, and downloads the relevant files, in .xml format. From here she extracts the text, article by article, into a single corpus. She makes a list of search terms which she thinks will help to narrow things down, and, using this, restricts her new corpus to articles about the Crimean war, as best as possible. 
+
+First she looks at the most frequent terms: the usual suspects are there, of course - but once she filters out the 'stop words' she sees some potentially patterns, and notes down some words to dig into later. Giving the top ten per month is also interesting, and shows a shift from words relating to the diplomacy of the conflict, to more potentially more 'emotive' language, describing individual battles. 
+
+Next she creates a 20 topic model to see if there is any difference between the types of articles in her corpus, which shows a few 'themes' under which the articles can be grouped together: one with words like _steamer_, _navy_, _Sebastopol_ as its most important words is an unusual grouping, and might be worth exploring. 
+
+Using sentiment analysis the historian of the Crimean war notices a shift towards reporting with more negative words, and a cluster of particularly negative articles in late 1854: when the reports of the failed military action during the Battle of Baklava started to trickle through: an event which was immortalised only weeks later in Tennyson's narrative poem _The Charge of the Light Brigade_. Not surprising, perhaps, but a reassuring confirmation.
+
+How were these titles sharing information? Using techniques to find overlapping shared text across multiple documents, she works out that the flow of information moved from the established dailies to the weekly titles. 
+
+This is not too far into the future: we're starting to make data openly available. The tools, which only a few years ago were restricted to experts, are now unimaginably easier to use. 
+
+Things have moved on from the first generation of 'how-to' guides for digital humanities students: it's now fairly reasonable to pick a language, probably R or Python, and do all analysis, writing, documentation and so forth without ever leaving the safety of its ecosystem. These modern languages have a huge number of packages for doing all sorts of interesting analysis of text, and even authoring entire books.
+
+On the other hand, the promise of scraping the web for open data, while still with its place, has in many ways been superseded. The historian looking to use newspaper data must wrestle with closed systems, proprietary formats and so forth. The sheer quantity of newspaper data, and its commercial roots (and perhaps new commercial future), mean that it has not been treated in the same way as many other historical datasets. Newspaper data has, up until recently, had several financial, legal, bureaucratic and technical hurdles. 
+
+## What can you do with newspaper data?
+There is a _lot_ of newspaper data available now for historical researchers. Across the globe, the keepers of cultural memory are digitising their collections. Most news digitisation projects do OCR and zoning, meaning that the digitised images are processed so that the text is machine readable, and then divided into articles. It's far from perfect - we'll show some examples in a later chapter - but it does generate a large amount of data: both the digitised images, and the underlying text and information about the structure.  Once you get hold of this data, the rewards can be huge: looking just at English-language users in the last few years, researchers have used it to understand Victorian jokes, trace the movement of information and ideas, understand the effects of industrialisation, track the meetings of radical groups, and of course understand more about the newspapers themselves and the print culture that surrounds them.
+
+While there has been a lot digitised, their is much, much more still to be done. The collection, in any country, is far from representative. But we must work with what we've got. The new histories of the press will be written by looking at text at scale, drawing broad conclusions, understanding genre, authorship and so forth through data analysis. 
+
+We're just at the beginning: in the last few years projects have been using neural networks methods to improve the kinds of things we can do: the Living with machines project, for example, or several projects at the Royal Library in the Netherlands. The methods I describe here are simplistic, but they can still add to our understanding. 
+
+## Goals
+This short book hopes to help you:
+
+* Know what British Library newspaper data is openly available, where it is, and where to look for more coming onstream.
+* Understand something of the XML format which make up the Library's current crop of openly available newspapers. 
+* Have a process for extracting the plain text of the newspaper in a format which is easy to use.
+* Have been introduced to a number of tools which are particularly useful for large-scale text mining of huge corpora: n-gram counters, topic modelling, text re-use.
+* Understand how the tools can be used to answer some basic historical questions (whether they provide answers, I'll leave for the reader and historian to decide)
+
+[@Hills:2019aa] 
+
+## Why R?
+R is a programming language, much like Python. In the last few years it has become widely used by data scientists, those using digital humanities techniques, and social sciences. It has some advantages for a novice to programming: thanks to a very widely-used platform (called an Integrated Programming Environment or IDE) for the language called R-Studio, it is particularly easy to get up and running, writing code and drawing graphs, than many other languages. A lot of this is because of developers who have extended the functionality of the 'base' language greatly, particularly a suite of extra functions known collectively as the 'tidyverse'. More on that in a bit. 
+
+I think R comes into its own when its potential for mashups are realised: you could, for example, use *sf* draw a buffer around all of the UK's waterways (or railways, or whatever), compare sentiment analysis scores in that newspapers from that buffer using *tidytext*, before connecting to wikidata and Open Street Map using their APIs and *httr*, and finally turn your  analysis into an application using *Shiny* - all without leaving R-studio and a pretty common set of data standards. 
+
+This is a handbook made _with_ R, and _using_ R, but it is not really primarily _about_ R. It _should_ be readable by anyone, but it's possible bits will not be so easy to follow. I apologise in advance for any confusion or difficulties. 
+
+If you'd like to get started with R and the tidyverse in earnest, I recommend some of these tutorials and books:
+
+http://dh-r.lincolnmullen.com 
+
+https://blog.shotwell.ca/posts/why_i_use_r/
+
+https://r4ds.had.co.nz
+
+## Getting started
+The only requirements to get through these tutorials are to install R and R-Studio, as well as some data which needs to be downloaded separately. 
+
+### Download R and R-Studio
+R and R-Studio are two separate things. R will work without R-studio, but not the other way around, and so it should be downloaded first. It _should_ be a simple process: Go to the download page here: https://www.r-project.org, select a download mirror, and download the correct version for your operating system. Follow the installation instructions here: https://cran.r-project.org/manuals.html if you get stuck, but it should be fairly painless. 
+
+Next, download R-Studio here: https://rstudio.com/products/rstudio/. You'll want the desktop version and again, download the correct version and follow the instructions. When both of these are installed, you just need to open R-Studio, and it should run the underlying software R automatically. 
+
+At this point, I would highly recommend reading a beginners guide to R and R-studio, such as this one: https://moderndive.netlify.com/1-getting-started.html to familiarise yourself with the layout and some of the basic functionality of R-Studio. Once you understand where to type and save code, where your files and dataframes live, and how to import data from spreadsheets, you should be good to start experimenting with newspaper data. 
+
+R relies on lots of additional packages for full functionality, and you'll need to install these by using the function ```install.packages()```, folled by the package name, in inverted commas. I recommend doing this to install the tidyverse suite of packages by running ```install.packages('tidyverse')``` in the Console window (the bottom-left of the screen in R-Studio) as you'll end up using this all the time. 
+
+## Who is the guide for?
+Historians looking to understand news at scale. Undergraduates and postgrads looking to dip their feet into computational methods.
+
+Imagine a PhD student, hasn't used newspaper data before. What is available? How can she access it? Does she need to visit the library, or will she be happy with what's available online? 
+
+## Format of the book
+
+The book doesn't need to be read in its entirety: if you're just interested in finding newspaper data, specifically that collected by the British Library, you could stick with the first part. You might be a much better programmer than me and just interested in the scope of the Library's datasets for some analysis - for instance, it might be useful to look at the bits on the BNA and JISC digitisation projects, to get a handle on how representative the data you have is. You might have arrived at the Library to do some research and not know where to begin with our folder structure and so forth. As much of that information as possible has been included.
+
+
+

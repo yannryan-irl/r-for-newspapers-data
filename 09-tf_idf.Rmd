@@ -1,0 +1,70 @@
+# Calculating tf-idf Scores with Tidytext
+
+Another common analysis of text uses a metric known as 'tf-idf'. This stands for term frequency-inverse document frequency. Take a corpus with a bunch of documents (here we're using _articles_ as individual documents). TF-idf scores the words in each document, normalised by how often they are found in the _other_ documents. It's a good measure of the 'importance' of a particular word for a given document, and it's particularly useful in getting good search results from keywords. It's also a way of understanding the way language is used in newspapers, and how it changed over time.
+
+The function in the tidytext library ```bind_tf_idf``` takes care of all this. First you need to get a frequency count for each issue in the dataframe. We'll make a unique issue code by pasting together the date and the nlp into one string, using the function ```paste0```, and save this as a file named 'issue_words'.
+
+First load the necessary libraries and tokenised data we created in the last notebook:
+
+```{r}
+library(tidytext)
+library(tidyverse)
+library(rmarkdown)
+load('tokenised_news_sample')
+```
+
+```{r}
+issue_words = tokenised_news_sample %>% 
+  mutate(issue_code = paste0(title, full_date)) %>%
+  group_by(issue_code, word) %>%
+  tally() %>% 
+  arrange(desc(n))
+```
+
+Next use ```bind_tf_idf()``` to calculate the measurement for each word in the dataframe. 
+
+```{r}
+issue_words %>% bind_tf_idf(word, issue_code, n)
+```
+
+Now we can sort it in descending order of the issue code, to find the most 'unusual' words:
+
+```{r}
+issue_words %>% 
+  bind_tf_idf(word, issue_code, n) %>% 
+  arrange(desc(tf_idf))
+```
+
+What does this tell us? Well, unfortunately, most of the 'unusual' words by this measure are OCR errors or spelling mistakes. One way to correct for this is to only include words in an English language dictionary. Use the ```lexicon``` package and then the command ```data(grady_augmented)``` to download a dictionary of English language words and common proper nouns, as a character vector:
+
+```{r}
+library(lexicon)
+
+data(grady_augmented)
+```
+
+Get tf-idf scores again, filtering the dataset first to include only words within ```grady_augmented```
+
+```{r}
+issue_words %>% 
+  filter(word %in% grady_augmented) %>%
+  bind_tf_idf(word, issue_code, n) %>% 
+  arrange(desc(tf_idf))
+```
+
+
+The highest tf-idf score is for the word 'tetanus' on 19th May, 1856. This means that this word occurred lots of times in this issue, and not very often in other issues. This _might_ point to particular topics, and it might, in particular, point to topics which had a very short or specific lifespan. 
+
+If we had a bigger dataset, or one arranged in another way, these words might point to linguistic differences between regions, publishers, or writers.
+
+Let's find the tetanus articles. We can use a function called ```str_detect()``` with ```filter()``` to filter to just articles containing a given word. So we'll go back to the untokenised dataframe.
+
+
+```{r}
+load('news_sample_dataframe')
+news_sample_dataframe %>% filter(str_detect(text, "tetanus")) 
+```
+
+These disproportionately high mentions of the word tetanus seem to be related to the trial of William Palmer (https://en.wikipedia.org/wiki/William_Palmer_(murderer), who was convicted for the murder of his friend by strychnine - which apparently caused tetanus.
+
+

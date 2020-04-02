@@ -1,0 +1,219 @@
+# Detecting text reuse in newspaper articles. 
+
+19th century newspapers shared text all the time. Sometimes this took the form of credited reports from other titles. For much of the century, newspapers paid the post office to give them a copy of all other titles. Official reused dispatches were not the only way text was reused: advertisements, of course, were placed in multiple titles at the same time, and editors were happy to use snippets, jokes, and so forth
+
+Detecting the extent of this reuse is a great use of digital tools. R has a library, *textreuse*, which allows you to do this reasonably simply. It was intended to be used for plagiarism detection and to find duplicated documents, but it can also be repurposed to find shared articles. 
+
+Some of the most inspiring news data projects at the moment are looking at text reuse. The _Oceanic Exchanges_ project is a multi-partner project using various methods to detect this overlap. This methods paper is really interesting, and used a similar starting point, though it then does an extra step of calculating 'local alignment' with each candidate pair, to improve the accuracy. [@smith_computational_2015] 
+
+Melodee Beals's [_Scissors and Paste_](http://scissorsandpaste.net) project, at Loughborough and also part of _Oceanic Exchanges_, also looks at text reuse in 19th century British newspapers. [Another project](http://comhis.fi/clusters), looking at Finnish newspapers, used a technique usually used to detect protein strains to find clusters of text reuse on particularly inaccurate OCR. [@inproceedings-salmi, @inproceedings-blast] 
+
+The steps are the following:
+
+* Turn the newspaper sample into a bunch of text documents, one per article
+
+* Load these into R as a special forat called a TextReuseCorpus.
+
+* Divide the text into a series of overlapping sequences of words, known as n-grams.
+
+* 'Hash' the n-grams - each one is given a numerical code, which is much less memory-hungry. Randomly select 200 of these hashes to represent each document.
+
+* Use a local sensitivity hashing algorithm (I'll explain a bit below) to generate a list of potential candidates for text reuse
+
+* Calculate the similarity scores for these candidates
+
+* Calculate the local alignment of the pairs to find out exactly which bits overlap
+
+To set some expectations: this tutorial uses a small sample dataset of one title over a period of months, and unsurprisingly, there's not really any text re-use. A larger corpus over a short time period, with a number of titles, would probably give more interesting results. 
+
+Also, these techniques were developed with modern text in mind, and so the results will be limited by the accurary of the OCR, but by setting the parameters reasonably loose we might be able to mitigate for this.
+
+http://matthewcasperson.blogspot.com/2013/11/minhash-for-dummies.html
+
+http://infolab.stanford.edu/~ullman/mmds/ch3.pdf
+
+## Turn the newspaper sample into a bunch of text documents, one per article
+
+Load libaries: the usual suspect, tidyverse, and also the package 'textreuse'. If it's not installed, you'll need to do so using ```install.packages('textreuse')```
+
+```{r}
+library(tidyverse)
+library(textreuse)
+```
+
+### Load the dataframe and preprocess
+
+In the _extract text_ chapter \@ref(label), you created a dataframe, with one row per article. The first step is to reload that dataframe into memory, and do some minor preprocessing.
+
+```{r}
+load('news_sample_dataframe')
+
+
+```
+
+Make a more useful code to use as an article ID. 
+First use ```str_pad()``` to add leading zeros up to a maximum of three digits.
+
+```{r}
+news_sample_dataframe$article_code = str_pad(news_sample_dataframe$article_code, 
+                                             width = 3, 
+                                             pad = '0')
+```
+
+Use ```paste0()``` to add the prefix 'article' to this number.
+
+```{r}
+news_sample_dataframe$article_code = paste0('article_',
+                                            news_sample_dataframe$article_code)
+```
+
+Unfortunately, this is a very slow process, and we have 170,000 articles to compare. For the purposes of this demonstration, use ```sample_n``` to make a sample. The only problem is that it makes the code unreproducible. It might be better to sample based on a limited time period.
+
+```{r}
+sample_for_text_reuse = news_sample_dataframe %>% sample_n(10000)
+```
+
+### Make a text file from each article
+
+This is a very simple function - it says, for each row in the news_sample_dataframe, write the third cell (which is where the text of the article is stored), using a function from a library called data.table called fwrite(), store it in a folder called textfiles/, and make a filename from the article code concatenated with '.txt'. 
+
+R won't let you create a folder, so create an empty folder first, in the project directory, called ```textfiles```
+
+Now you should have a folder in the project folder called textfiles, with a small text document for each article inside. This is a LOT of text documents, so your computer might complain.
+
+```{r}
+
+library(data.table)
+
+
+for(i in 1:nrow(sample_for_text_reuse)){
+    
+    
+  filename = paste0("textfiles/", news_sample_dataframe[i,1],".txt")
+  
+  fwrite(news_sample_dataframe[i,3], file = filename)
+}
+
+```
+
+## Load the files as a TextReuseCorpus
+
+### Generate a minhash
+
+Use the function minhash_generator() to specify the number of minhashes you want to represent each document. Set the random seed to make it reproducible.
+
+```{r}
+minhash <- minhash_generator(n = 400, seed = 1234)
+```
+
+
+### Create the TextReuseCorpus
+
+```TextReuseCorpus()``` takes a number of arguments. Going through each in turn:
+
+*dir =* is the directory where all the text files are stored.
+
+*tokenizer* is the function which tokenises the text. Here we've used tokenize_ngrams, but it could also be tokenize words. You could build your own: for example, if you thought that comparing similar characters in small sequences would help to detect text reuse, you could use that to compare the documents. 
+
+*n* is the number of tokens in the ngram tokeniser. Setting it at 4 turns the following sentence:
+
+>  Here we've used tokenize_ngrams, but it could also be tokenize words
+
+into: 
+
+Here we've used tokenize_ngrams
+we've used tokenize_ngrams but
+used tokenize_ngrams but it
+tokenize_ngrams but it could
+but it could also
+it could also be
+could also be tokenize
+also be tokenize words
+
+*minhash_func =* is the parameters set using ```minhash_generator()``` above
+
+*keep_tokens =* Whether or not you keep the actual tokens, or just the hashes. There's no real point keeping the tokens as we use the hashes to make the comparisons. This function will take a long time to run with a large number of documents. 
+
+```{r message=FALSE, warning=FALSE}
+reusecorpus <- TextReuseCorpus(dir = "textfiles/", 
+                               tokenizer = tokenize_ngrams, 
+                               n = 3,
+                          minhash_func = minhash, 
+                          keep_tokens = FALSE, 
+                          progress = FALSE)
+```
+
+Now each document is represented by a series of hashes, which are substitutes for small sequences of text. For example, this is the first ten minhashes for the first article:
+
+```{r}
+head(minhashes(reusecorpus[[1]]),10)
+```
+
+At this point, you could compare any document's sequences of hashes to any other, and get its 'Jacquard Similarity' score, which counts the number of shared hashes in the documents. The more shared hashes, the higher the similarity.
+
+However, it would be very difficult, even for a computer, to use this to compare every document to every other in a corpus.  A Local Sensitivity Hashing algorithm is used to solve this problem. This groups the representations together, and finds pairs of documents that should be compared for similarity.
+
+> LSH breaks the minhashes into a series of bands comprised of rows. For example, 200 minhashes might broken into 50 bands of 4 rows each. Each band is hashed to a bucket. If two documents have the exact same minhashes in a band, they will be hashed to the same bucket, and so will be considered candidate pairs. Each pair of documents has as many chances to be considered a candidate as their are bands, and the fewer rows there are in each band, the more likely it is that each document will match another. (https://cran.r-project.org/web/packages/textreuse/vignettes/textreuse-minhash.html)
+
+First create the buckets. You can try other values for the bands. 
+
+```{r message=FALSE, warning=FALSE}
+buckets <- lsh(reusecorpus, bands = 80, progress = TRUE)
+```
+
+Next, use ```lsh_candidates()``` to compare each bucket, and generate a list of candidates. 
+
+```{r}
+candidates <- lsh_candidates(buckets)
+```
+
+Next we go back to the full corpus, and calculate the similarity score for these pairs, using ```lsh_compare()```. The first argument is the candidates, the second is the full corpus, the third is the method (other similarity functions could be used). 
+
+```{r}
+jacsimilarity_both = lsh_compare(candidates, 
+                                 reusecorpus, 
+                                 jaccard_similarity, 
+                                 progress = FALSE) %>% 
+  arrange(desc(score))
+
+jacsimilarity_both
+```
+
+It returns a similarity score for each pair: The first pair have a 25% overlap, and the second a much smaller number.
+
+The last thing is to join up the article codes to the full text dataset, and actually see what pairs have been detected. This is done using two ```left_join()``` commands, one for a and one for b. Also select just the relevant columns, and filter out those with a perfect score as they are very likely to be artefacts rather than full articles, and filter out those where both documents are from the same issue.
+
+```{r}
+matchedtexts = jacsimilarity_both %>% 
+  left_join(news_sample_dataframe, by = c('a' = 'article_code')) %>% 
+  left_join(news_sample_dataframe, by = c('b' = 'article_code'))%>% 
+  select(a,b,score, text.x, text.y, title.x, title.y, full_date.x, full_date.y)
+
+matchedtexts = matchedtexts %>% filter(score<1) %>% filter(full_date.x != full_date.y)
+```
+
+
+To check the specific overlap of two documnets, use another function from textreuse to check the 'local alignment'. This is like comparing two documents in Microsoft Word: it finds the bit of the text with the most overlap, and it points out where in this overlap there are different words, replacing them with ######
+
+First turn the text in each cell into a string:
+
+```{r}
+a = paste(matchedtexts$text.x[3], sep="", collapse="")
+
+b =  paste(matchedtexts$text.y[3], sep="", collapse="")
+```
+
+Call the ```align_local()``` function, giving it the two strings to compare.
+
+```{r}
+align_local(a, b)
+```
+
+Unsurprisingly, the pairs of documents are nearly all advertisements. 
+
+This is very much a beginning, but I hope you can see the potential. It's worth noting that the article segmentation in these newspapers might actually work against the process, because it often lumps multiple articles into one document. Consequently, the software won't find potential matches if there's too much other non-matching same text in the same document. 
+
+A potential work-around would be to split the document into chunks of text, and compare these chunks. The chunks could be joined back to the full articles, and using local alignment, the specific bits that overlapped could be found. 
+
+## Further reading
+

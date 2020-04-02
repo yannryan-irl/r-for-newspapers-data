@@ -1,0 +1,27 @@
+# Further reading
+
+There is a huge volume of literature on R, text analysis and newspaper digitisation. This is a small collection of recommended reading.
+
+A useful list of coding resources:
+https://scottbot.net/teaching-yourself-to-code-in-dh/
+
+A book on R specifically for digital humanities:
+http://dh-r.lincolnmullen.com
+
+Geocomputation with R - a fantastic introduction to advanced mapping and spatial analysis.
+https://bookdown.org/robinlovelace/geocompr/
+
+Use R to write blog posts:
+https://bookdown.org/yihui/blogdown/
+
+R-Studio cheatsheets, which are really useful to print out and keep while you're coding, particularly at the beginning: 
+https://rstudio.com/resources/cheatsheets/
+
+Text mining with R - lots of the examples in this book are based on lessons from here:
+https://www.tidytextmining.com
+
+The best introduction to R and the Tidyverse:
+https://r4ds.had.co.nz
+
+A recent report on newspaper digitisation and metadata standards:
+https://melissaterras.files.wordpress.com/2020/01/selectioncriterianewspapers_hauswedell_nyhan_beals_terras_bell-3.pdf

@@ -1,0 +1,275 @@
+# OCR and its problems
+
+## Introduction
+OCR, or 'Optical Character Recognition', is a series of methods for turning the text in digitised images into machine-readable code.
+
+## What is it like in BL newspapers?
+
+This is a difficult question to answer, because it varies so much between projects, format and dates. The truth is, nobody _really_ knows what it's like, because that would involve having large sets of very accurate, manually transcribed newspapers, to compare to the OCR text. Subjectively, we can probably make a few generalisations. 
+
+* It gets better as the software gets better, but not particularly quickly, because much of the quality is dependant on things to do with the physical form. 
+
+* Digitising from print is much better than from microfilm. But print can still be bad. 
+
+* Standard text is much better than non-standard. For example, different fonts, sizes, and so forth.
+
+* Advertisements seem to have particularly bad OCR - they are generally not in regular blocks of text, which the OCR software finds difficult, and they often used non-standard characters or fonts to stand out. 
+
+* The time dimension is not clear: type probably got better, but it also got smaller, more columns. 
+
+* Problems with the physical page have a huge effect: rips, tears, foxing, dark patches and so forth. Many errors are not because of the microfilm, digital image or software, and may not be fixable. 
+
+* What does this all mean? Well, it introduces bias, and probably in non-random ways, but in ways that have implications for our work. If things are digitised from a mix of print and microfilm, for example, we might get very different results for the print portion, which might easily be mis-attributed to a historical finding. Perhaps there were twice as many mentions of cheese in the 1850s than in the 1890s? It's probably best to rule out that this is not just because later newspapers had a difficult font, or they were digitised from microfilm instead of print. [@hill-ocr, @Cordell_2017, @Piotrowski_2012, @cordell-ocr, @evershed-ocr]
+
+## OCR report on the first two batches of content on the BL Open Repository
+
+The first two batches of digitised content available on the repository consist of about 290,000 pages (see separate report). This short report evaluates the OCR quality (using one metric), comparing across time and formats. Conclusions are as expected: Processing from print results in significantly higher reported accuracy scores (though this may not reflect real-world OCR tests). The reported accuracy increases dramatically across time, particularly for print titles. 
+
+The files returned from FMP contain a 'predicted word accuracy score' percentage for each page. These can be extracted and visualised, with some interesting conclusions. However it's important to note these are not calculated by comparing actual results to the OCR, but rather use an internal algorithm. Some links worth reading to understand more about OCR and confidence scores:
+
+
+>OCR software calculates a confidence level for each character it detects. Word and page confidence levels can be calculated from the character confidences using algorithms either inside the OCR software or as an external customised process. The OCR software doesn't know whether any character is correct or not – it can only be confident or not confident that it is correct. It will give it a confidence level from 0-9. True accuracy, i.e., whether a character is actually correct, can only be determined by an independent arbiter, a human. This can be done by proofreading articles or pages, or by manually re-keying the entire article or page and comparing the output to the OCR output. These methods are very time consuming. (http://www.dlib.org/dlib/march09/holley/03holley.html)
+
+>Because Abbyy Finereader is a commercial product, the software that predicts its accuracy is not freely available for inspection. As such, we should not make too much of the figure presented here, which certainly does not align with a human reader’s assessment of the page’s overall similarity to the words on the page images. (https://ryancordell.org/research/qijtb-the-raven-mla/)
+
+## Extract predicted word scores from the ALTO pages
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(data.table)
+library(lubridate)
+```
+
+Generate Library colour scheme palettes:
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+libraryPaletteMain = c("#3D5C12", "#831C3D", "#0D5257", "#665012", 
+                       "#3F1F4C", "#0F375C", "#003A34", "#36245C", "#551A01") 
+
+libraryPaletteHighlight = c("#CEE055","#DA2F65","#00788B","#FFC82E", 
+                            "#7E3E98",  "#1E6EB8", "#018074", "#865BE7", "#D44202") 
+
+libraryPalettePaired = c("#3D5C12", "#CEE055", "#831C3D", "#DA2F65",
+                         "#0D5257","#00788B", "#665012","#FFC82E", "#3F1F4C", "#7E3E98",
+                         "#0F375C",  "#1E6EB8", "#003A34", "#018074",
+                         "#36245C","#865BE7", "#551A01", "#D44202")
+```
+
+
+<!-- ```{r eval=FALSE, include=FALSE} -->
+<!-- allthealtofiles =  str_match(list.files(path = "//path-to-your-ocr-files",  -->
+<!--                                         all.files = TRUE, recursive = TRUE, full.names = TRUE), ".*[0-9]\\.xml") %>% -->
+<!--     discard(is.na) -->
+<!-- ``` -->
+
+
+<!-- ```{r eval=FALSE, include=FALSE} -->
+<!-- sample_alto_files = allthealtofiles %>%  -->
+<!--   as_tibble() %>%  -->
+<!--   sample_n(10000) %>%  -->
+<!--   pull(value) -->
+<!-- ``` -->
+
+
+<!-- ```{r eval=FALSE, include=FALSE} -->
+
+<!-- all_ocr = NULL -->
+
+<!-- for (file in allthealtofiles){ -->
+
+<!--  page = file %>%   -->
+<!--    readLines() %>%  -->
+<!--    strsplit("\n", fixed=TRUE) # split on each newline -->
+
+<!--  content = page[18] %>%  -->
+<!--   as.data.table() # get element 18 which is the line with the predicted score.  -->
+
+<!--  rbindlist(list(all_ocr, data.table(content, file))) %>%  -->
+<!--    fwrite('all_ocr.csv', append = TRUE)  -->
+<!--  # turn into data.table, add the filename, write to csv -->
+
+<!-- } -->
+<!-- ``` -->
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+load('data/all_ocr')
+
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+all_ocr = all_ocr %>% 
+  separate(X2, into = c('nlp', 'date', 'page'), sep = "_|\\." )  
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+all_ocr = all_ocr %>% 
+  separate(X1, into = c('a', 'b'), sep = ':')
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+all_ocr = all_ocr %>% 
+  mutate(b = as.numeric(str_remove(b, "%"))) %>% 
+  select(-a, accuracy = b)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(lubridate)
+all_ocr = all_ocr %>% mutate(date = ymd(date))
+```
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+title = c("The Express", "The British Press or Morning Literary Advertiser", 
+"National Register", "The Press", "The Star", "The Statesman", 
+"The Northern Daily Times", "Northern Times", "The Daily Times", 
+"The Liverpool Standard and General Commercial Advertiser", "The Liverpool Standard and General Advertiser", 
+"The Liverpool Standard and General Commercial Advertiser", "Colored News", 
+"The Lady’s Newspaper and Pictorial Times", "The Sun")
+nlp = c("0002642", "0002643", "0002644", "0002645", "0002646", "0002647", 
+"0002083", "0002084", "0002085", "0002088", "0002089", "0002090", 
+"0002244", "0002254", "0002194")
+type = c("microfilm", "microfilm", "microfilm", "microfilm", "microfilm", 
+"microfilm", "print", "print", "print", "print", "print", "print", 
+"print", "print", "print")
+
+batch1_2 = tibble(title,nlp, type)
+```
+
+
+## Visualisations:
+
+### What's in the data?
+
+The data includes 290,000 separate ALTO files, each representing one page. From the files, the 'predicted word accuracy' score has been extracted, and turned into a dataframe. The data contains about 117,000 files digitised from microfilm, and 173,000 digitised from print. This makes an interesting dataset to compare OCR quality scores across two different formats, by the same company at the same time. 
+
+```{r message=FALSE, warning=FALSE, include=FALSE, fig.cap="Number of pages over time", dev='png'}
+all_ocr %>%
+  left_join(batch1_2) %>% 
+  mutate(year = cut(date, 'year')) %>% 
+  group_by(year, title) %>% 
+  tally() %>% 
+  ggplot() + 
+  geom_col(aes(x = ymd(year), 
+               y = n, 
+               fill = title), 
+           alpha = .8)+
+  theme_minimal() + 
+  theme(legend.position = 'bottom')  + 
+  scale_fill_manual(values = libraryPalettePaired) + 
+  theme(legend.text = element_text(size = 6), 
+        legend.title = element_blank()) + 
+  guides(fill = guide_legend(ncol = 3, 
+                             override.aes = list(size = .2))) + 
+  labs(x = 'number of pages')
+```
+
+
+Comparison between pages: This visualisation shows pages on the y axis and time on the x axis. Each page is a separate 'band'. Lighter colours (yellow) represent a higher reported score. 
+
+Front pages have consistently lower scores than other pages. This is mostly because the front pages of 19th century newspapers contained mostly adverts, which OCR software finds difficult to process because of the variety in type and layout. 
+
+This visualisation also shows the existence of multiple editions: dark lines on pages 9, 17 etc. are front pages of _subsequent_ editions which have also been scanned under the same date. Points have been randomly spaced out for readability.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="OCR accuracy visualised by page, across the dataset. Lighter colours represent higher accuracy. Clear difference between the front and subsequent pages can be seen.", dev='png'}
+all_ocr  %>%  
+  ggplot() + 
+  geom_jitter(aes(x = date, y = page, color = accuracy), 
+              alpha = .1, size = .1)  + 
+  scale_color_viridis_c() + 
+  theme_minimal() 
+
+```
+
+## Highest and lowest results:
+
+The lowest results are all from the Lady's Newspaper - this was an illustrated title and so the score is probably meaningless. 
+```{r echo=FALSE}
+knitr::kable(all_ocr %>% arrange(accuracy) %>% head(10))
+```
+
+The highest scores are blank pages:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::kable(all_ocr %>% arrange(desc(accuracy)) %>% head(10))
+```
+
+## Page-by-page OCR visualisation
+
+Another way of looking at pages. Page one is consistently lowest predicted accuracy. The exception is a group of page 1 files in late 1860s: these were copies of the Sun and Central Press which were printed with two columns and large type, and without adverts on the first page.
+
+In general the predicted accuracy scores move upwards over time, and variation decreases. This is particularly clear in titles processed from print as the ntext  
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Visualising OCR accuracy scores. Each dot represents a single page, positioned by date and reported accuracy. Pages are coloured by page position. Only the first four page positions are shown, for readability", dev='png'}
+all_ocr  %>% filter(page %in% c('0001', '0002', '0003', '0004')) %>%
+  ggplot() + 
+  geom_point(aes(x = date, 
+                 y = accuracy, 
+                 color = page), alpha = .1, size = .1)+ 
+  scale_color_manual(values = libraryPaletteHighlight, 
+                     guide = guide_legend(override.aes = list(shape = 15,
+                                                              alpha = .9, size = 3)))  + 
+  theme_minimal() + 
+  theme(legend.position = 'bottom')
+```
+
+## Microfilm vs print:
+
+Approximately half of the data is from titles which were processed from microfilm, allowing a useful comparison between the scores of microfilm and print titles. The microfilm titles have, as expected, consistently lower accuracy, particularly the distribution.  
+
+Particularly apparent is the difference in improvement over time: There's no obvious increase in the scores of microfilm titles over time, but there is a significant change in print titles: from 1825 the predicted accuracy scores for print increase significantly, and the variation reduces noticeably. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Microfilm vs Print: difference in the distribution and evolution of accuracy scores for titles digitised from both formats.", dev='png'}
+all_ocr  %>% filter(page %in% c('0001', '0002', '0003', '0004')) %>%
+  left_join(batch1_2) %>%
+  filter(nlp!="0002254") %>% 
+  ggplot() + 
+  geom_point(aes(x = date, 
+                 y = accuracy, 
+                 color = type), 
+             alpha = .05, 
+             size = .2)   + 
+  theme_minimal() + 
+  scale_color_discrete() + 
+  facet_wrap(~type, ncol = 1) + 
+  scale_color_viridis_d(guide = guide_legend(override.aes = list(shape = 15,
+                                                                 alpha = .9, 
+                                                                 size = 3))) + theme(legend.position = 'none') + 
+  scale_color_manual(values = libraryPaletteMain)
+```
+
+Charting the average score (averaged over an entire year, so take with a pinch of salt) shows the different between microfilm and print more starkly:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A broad view of improvement. Print titles show much more improvement in the assessed accuracy of the OCR over time", dev='png'}
+all_ocr  %>% 
+  left_join(batch1_2) %>%
+  filter(nlp!="0002254") %>% 
+  mutate(year = cut(date, 'year')) %>%
+  group_by(title, year, type) %>% 
+  tally(mean(accuracy)) %>% 
+  ggplot() + 
+  geom_line(aes(x = ymd(year), y = n, color = title), size = 1, alpha = .9) + 
+  theme_minimal() + 
+  theme(legend.position = 'bottom') + 
+  scale_fill_manual(values = libraryPalettePaired) + 
+  theme(legend.text = element_text(size = 6), 
+        legend.title = element_blank()) + 
+  guides(fill = guide_legend(ncol = 3, 
+                             override.aes = list(size = .2))) + 
+  labs(x = 'number of pages') + 
+  scale_color_manual(values = libraryPalettePaired) + 
+  facet_wrap(~type, ncol = 1)
+```
+
+## Conclusions
+
+This short report shows that the OCR accuracy -if the _predicted word accuracy_ score included in the ALTO metadata is in any way a useful proxy - improves over time, and from 1825 onwards, the predicted scores for titles scanned from print are particularly high and consistent. Pages of advertising, as expected, show the lowest accuracy scores, and the scores are meaningless for illustrated titles. 
+
+These reports could be generated for each batch going forward, and made available to researchers using the OCR for research. 
+
+## Impact on analysis
+It depends. Broad analysis still seems to work - keyword searches, for example, come up with broadly expected results. It might be more important in finer work, for example Natural Language Processing (NLP). NLP relies on 
+
+[Why You (A Humanist) Should Care About Optical Character Recognition](https://ocr.northeastern.edu/report/)

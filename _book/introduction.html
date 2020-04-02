@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Introduction | A short guide to using British Library Newspaper Data, using R</title>
+  <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Introduction | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
+  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Introduction | A short guide to using British Library Newspaper Data, using R" />
+  
+  <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
+  
+
+<meta name="author" content="Yann Ryan" />
+
+
+<meta name="date" content="2020-04-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="uk-newspaper-data.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface &amp; Acknowledgements</a></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#unlocking-the-past-with-newspaper-data"><i class="fa fa-check"></i><b>2.1</b> Unlocking the past with newspaper data</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#what-can-you-do-with-newspaper-data"><i class="fa fa-check"></i><b>2.2</b> What can you do with newspaper data?</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#goals"><i class="fa fa-check"></i><b>2.3</b> Goals</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.4</b> Why R?</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#getting-started"><i class="fa fa-check"></i><b>2.5</b> Getting started</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction.html"><a href="introduction.html#download-r-and-r-studio"><i class="fa fa-check"></i><b>2.5.1</b> Download R and R-Studio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
+<li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
+<li class="chapter" data-level="3.2" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#burney-collection"><i class="fa fa-check"></i><b>3.2</b> Burney Collection</a></li>
+<li class="chapter" data-level="3.3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#jisc-newspaper-digitisation-projects"><i class="fa fa-check"></i><b>3.3</b> JISC Newspaper digitisation projects</a></li>
+<li class="chapter" data-level="3.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#british-newspaper-archive"><i class="fa fa-check"></i><b>3.4</b> British Newspaper Archive</a></li>
+<li class="chapter" data-level="3.5" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#british-library-openly-available-newspaper-data"><i class="fa fa-check"></i><b>3.5</b> British Library Openly available newspaper data</a></li>
+<li class="chapter" data-level="3.6" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#what-access-do-you-need"><i class="fa fa-check"></i><b>3.6</b> What access do you need?</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-find-individual-articles"><i class="fa fa-check"></i><b>3.6.1</b> You want to find individual articles?</a></li>
+<li class="chapter" data-level="3.6.2" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-text-mining-on-a-large-corpus"><i class="fa fa-check"></i><b>3.6.2</b> You want to do text mining on a large corpus</a></li>
+<li class="chapter" data-level="3.6.3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-text-mining-on-the-entire-digitised-collection"><i class="fa fa-check"></i><b>3.6.3</b> You want to do text mining on the entire digitised collection</a></li>
+<li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
+<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
+<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
+<li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
+<li class="chapter" data-level="5.2" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#using-r"><i class="fa fa-check"></i><b>5.2</b> Using R</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#base-r-commands"><i class="fa fa-check"></i><b>5.2.1</b> Base R commands</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#tidyverse"><i class="fa fa-check"></i><b>5.3</b> Tidyverse</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#select-pull"><i class="fa fa-check"></i><b>5.3.1</b> select(), pull()</a></li>
+<li class="chapter" data-level="5.3.2" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#group_by-tally-summarise"><i class="fa fa-check"></i><b>5.3.2</b> group_by(), tally(), summarise()</a></li>
+<li class="chapter" data-level="5.3.3" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#filter"><i class="fa fa-check"></i><b>5.3.3</b> filter()</a></li>
+<li class="chapter" data-level="5.3.4" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#sort-arrange-top_n"><i class="fa fa-check"></i><b>5.3.4</b> sort(), arrange(), top_n()</a></li>
+<li class="chapter" data-level="5.3.5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#left_join-inner_join-anti_join"><i class="fa fa-check"></i><b>5.3.5</b> left_join(), inner_join(), anti_join()</a></li>
+<li class="chapter" data-level="5.3.6" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#piping"><i class="fa fa-check"></i><b>5.3.6</b> Piping</a></li>
+<li class="chapter" data-level="5.3.7" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#plotting-using-ggplot"><i class="fa fa-check"></i><b>5.3.7</b> Plotting using ggplot()</a></li>
+<li class="chapter" data-level="5.3.8" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#doing-this-with-newspaper-data"><i class="fa fa-check"></i><b>5.3.8</b> Doing this with newspaper data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><i class="fa fa-check"></i><b>6</b> Mapping with R: Geocode and Map the British Library’s Newspaper Collection</a><ul>
+<li class="chapter" data-level="6.1" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#mapping-with-ggplot2-and-mapdata"><i class="fa fa-check"></i><b>6.1</b> Mapping with ggplot2 and mapdata</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#a-map-of-british-newspapers-by-city"><i class="fa fa-check"></i><b>6.1.1</b> A map of British Newspapers by City</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#drawing-a-background-map."><i class="fa fa-check"></i><b>6.2</b> Drawing a background map. `</a></li>
+<li class="chapter" data-level="6.3" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#add-sized-points-by-coordinates"><i class="fa fa-check"></i><b>6.3</b> Add Sized Points By Coordinates</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#get-a-count-of-the-total-titles-for-each-city"><i class="fa fa-check"></i><b>6.3.1</b> Get a count of the total titles for each city</a></li>
+<li class="chapter" data-level="6.3.2" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#get-hold-of-a-list-of-geocoordinates"><i class="fa fa-check"></i><b>6.3.2</b> Get hold of a list of geocoordinates</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#bringing-it-all-together"><i class="fa fa-check"></i><b>6.4</b> Bringing it all together</a></li>
+<li class="chapter" data-level="6.5" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#drawing-a-newspaper-titles-choropleth-map-with-r-and-the-sf-package"><i class="fa fa-check"></i><b>6.5</b> Drawing a newspaper titles ‘Choropleth’ map with R and the sf package</a></li>
+<li class="chapter" data-level="6.6" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#get-county-information-from-the-title-list"><i class="fa fa-check"></i><b>6.6</b> Get county information from the title list</a></li>
+<li class="chapter" data-level="6.7" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#make-the-points-object-using-geom_sf"><i class="fa fa-check"></i><b>6.7</b> Make the points object using geom_sf()</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#download-shapefiles"><i class="fa fa-check"></i><b>6.7.1</b> Download shapefiles</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#transform-from-utm-to-latlong-using-st_transform"><i class="fa fa-check"></i><b>6.8</b> Transform from UTM to lat/long using st_transform()</a></li>
+<li class="chapter" data-level="6.9" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#download-and-merge-the-title-list-with-a-set-of-coordinates."><i class="fa fa-check"></i><b>6.9</b> Download and merge the title list with a set of coordinates.</a></li>
+<li class="chapter" data-level="6.10" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#using-st_join-to-connect-the-title-list-to-the-shapefile"><i class="fa fa-check"></i><b>6.10</b> Using st_join to connect the title list to the shapefile</a></li>
+<li class="chapter" data-level="6.11" data-path="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"><a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html#draw-using-ggplot2-and-geom_sf"><i class="fa fa-check"></i><b>6.11</b> Draw using ggplot2 and geom_sf()</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="download-and-unzip-newspaper-files-using-r.html"><a href="download-and-unzip-newspaper-files-using-r.html"><i class="fa fa-check"></i><b>7</b> Download and Unzip Newspaper Files Using R</a><ul>
+<li class="chapter" data-level="7.1" data-path="download-and-unzip-newspaper-files-using-r.html"><a href="download-and-unzip-newspaper-files-using-r.html#download-a-set-of-newspaper-files-from-the-british-librarys-open-repository"><i class="fa fa-check"></i><b>7.1</b> Download a set of newspaper files from the British Library’s open repository</a></li>
+<li class="chapter" data-level="7.2" data-path="download-and-unzip-newspaper-files-using-r.html"><a href="download-and-unzip-newspaper-files-using-r.html#folder-structure"><i class="fa fa-check"></i><b>7.2</b> Folder structure</a></li>
+<li class="chapter" data-level="7.3" data-path="download-and-unzip-newspaper-files-using-r.html"><a href="download-and-unzip-newspaper-files-using-r.html#contruct-a-corpus"><i class="fa fa-check"></i><b>7.3</b> Contruct a Corpus</a></li>
+<li class="chapter" data-level="7.4" data-path="download-and-unzip-newspaper-files-using-r.html"><a href="download-and-unzip-newspaper-files-using-r.html#bulk-extract-the-files-using-unzip-and-a-for-loop"><i class="fa fa-check"></i><b>7.4</b> Bulk extract the files using unzip() and a for() loop</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="extract-text.html"><a href="extract-text.html"><i class="fa fa-check"></i><b>8</b> Make a Text Corpus</a><ul>
+<li class="chapter" data-level="8.1" data-path="extract-text.html"><a href="extract-text.html#where-is-this-data"><i class="fa fa-check"></i><b>8.1</b> Where is this data?</a></li>
+<li class="chapter" data-level="8.2" data-path="extract-text.html"><a href="extract-text.html#folder-structure-1"><i class="fa fa-check"></i><b>8.2</b> Folder structure</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="term-frequencies.html"><a href="term-frequencies.html"><i class="fa fa-check"></i><b>9</b> Term Frequencies</a><ul>
+<li class="chapter" data-level="9.1" data-path="term-frequencies.html"><a href="term-frequencies.html#load-the-news-dataframe-and-relevant-libraries"><i class="fa fa-check"></i><b>9.1</b> Load the news dataframe and relevant libraries</a></li>
+<li class="chapter" data-level="9.2" data-path="term-frequencies.html"><a href="term-frequencies.html#tokenise-the-text-using-unnest_tokens"><i class="fa fa-check"></i><b>9.2</b> Tokenise the text using unnest_tokens()</a></li>
+<li class="chapter" data-level="9.3" data-path="term-frequencies.html"><a href="term-frequencies.html#pre-process-to-clean-and-remove-stop-words"><i class="fa fa-check"></i><b>9.3</b> Pre-process to clean and remove stop words</a></li>
+<li class="chapter" data-level="9.4" data-path="term-frequencies.html"><a href="term-frequencies.html#create-and-save-a-dataset-of-tokenised-text"><i class="fa fa-check"></i><b>9.4</b> Create and save a dataset of tokenised text</a></li>
+<li class="chapter" data-level="9.5" data-path="term-frequencies.html"><a href="term-frequencies.html#count-the-tokens"><i class="fa fa-check"></i><b>9.5</b> Count the tokens</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="term-frequencies.html"><a href="term-frequencies.html#the-top-words-overall"><i class="fa fa-check"></i><b>9.5.1</b> The top words overall:</a></li>
+<li class="chapter" data-level="9.5.2" data-path="term-frequencies.html"><a href="term-frequencies.html#the-top-five-words-for-each-day-in-the-dataset"><i class="fa fa-check"></i><b>9.5.2</b> The top five words for each day in the dataset:</a></li>
+<li class="chapter" data-level="9.5.3" data-path="term-frequencies.html"><a href="term-frequencies.html#check-the-top-words-per-title-well-variant-titles-in-this-case"><i class="fa fa-check"></i><b>9.5.3</b> Check the top words per title (well, variant titles in this case):</a></li>
+<li class="chapter" data-level="9.5.4" data-path="term-frequencies.html"><a href="term-frequencies.html#top-words-by-year"><i class="fa fa-check"></i><b>9.5.4</b> Top words by year</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="term-frequencies.html"><a href="term-frequencies.html#visualise-the-results"><i class="fa fa-check"></i><b>9.6</b> Visualise the Results</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="term-frequencies.html"><a href="term-frequencies.html#words-over-time"><i class="fa fa-check"></i><b>9.6.1</b> Words over time</a></li>
+<li class="chapter" data-level="9.6.2" data-path="term-frequencies.html"><a href="term-frequencies.html#chart-several-words-over-time"><i class="fa fa-check"></i><b>9.6.2</b> Chart several words over time</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="term-frequencies.html"><a href="term-frequencies.html#further-reading"><i class="fa fa-check"></i><b>9.7</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="calculating-tf-idf-scores-with-tidytext.html"><a href="calculating-tf-idf-scores-with-tidytext.html"><i class="fa fa-check"></i><b>10</b> Calculating tf-idf Scores with Tidytext</a></li>
+<li class="chapter" data-level="11" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html"><i class="fa fa-check"></i><b>11</b> Sentiment analysis</a><ul>
+<li class="chapter" data-level="11.1" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#install-and-load-relevant-packages"><i class="fa fa-check"></i><b>11.1</b> Install and load relevant packages</a></li>
+<li class="chapter" data-level="11.2" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#fetch-sentiment-data"><i class="fa fa-check"></i><b>11.2</b> Fetch sentiment data</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#afinn-dataset"><i class="fa fa-check"></i><b>11.2.1</b> Afinn dataset</a></li>
+<li class="chapter" data-level="11.2.2" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#bing-dataset"><i class="fa fa-check"></i><b>11.2.2</b> Bing dataset</a></li>
+<li class="chapter" data-level="11.2.3" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#loughran-dataset"><i class="fa fa-check"></i><b>11.2.3</b> Loughran dataset</a></li>
+<li class="chapter" data-level="11.2.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#nrc-dataset"><i class="fa fa-check"></i><b>11.2.4</b> NRC dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#load-the-tokenised-news-sample"><i class="fa fa-check"></i><b>11.3</b> Load the tokenised news sample</a></li>
+<li class="chapter" data-level="11.4" data-path="sentiment-analysis.html"><a href="sentiment-analysis.html#charting-changes-in-sentiment-over-time"><i class="fa fa-check"></i><b>11.4</b> Charting Changes in Sentiment Over Time</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="topic-modelling.html"><a href="topic-modelling.html"><i class="fa fa-check"></i><b>12</b> Topic modelling</a><ul>
+<li class="chapter" data-level="12.1" data-path="topic-modelling.html"><a href="topic-modelling.html#topic-modelling-with-the-library-topicmodels"><i class="fa fa-check"></i><b>12.1</b> Topic modelling with the library ‘topicmodels’</a></li>
+<li class="chapter" data-level="12.2" data-path="topic-modelling.html"><a href="topic-modelling.html#load-the-tokenised-dataframe"><i class="fa fa-check"></i><b>12.2</b> Load the tokenised dataframe</a></li>
+<li class="chapter" data-level="12.3" data-path="topic-modelling.html"><a href="topic-modelling.html#create-a-dataframe-of-word-counts-with-tf_idf-scores"><i class="fa fa-check"></i><b>12.3</b> Create a dataframe of word counts with tf_idf scores</a></li>
+<li class="chapter" data-level="12.4" data-path="topic-modelling.html"><a href="topic-modelling.html#make-a-document-term-matrix"><i class="fa fa-check"></i><b>12.4</b> Make a ‘document term matrix’</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html"><i class="fa fa-check"></i><b>13</b> Detecting text reuse in newspaper articles.</a><ul>
+<li class="chapter" data-level="13.1" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#turn-the-newspaper-sample-into-a-bunch-of-text-documents-one-per-article"><i class="fa fa-check"></i><b>13.1</b> Turn the newspaper sample into a bunch of text documents, one per article</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#load-the-dataframe-and-preprocess"><i class="fa fa-check"></i><b>13.1.1</b> Load the dataframe and preprocess</a></li>
+<li class="chapter" data-level="13.1.2" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#make-a-text-file-from-each-article"><i class="fa fa-check"></i><b>13.1.2</b> Make a text file from each article</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#load-the-files-as-a-textreusecorpus"><i class="fa fa-check"></i><b>13.2</b> Load the files as a TextReuseCorpus</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#generate-a-minhash"><i class="fa fa-check"></i><b>13.2.1</b> Generate a minhash</a></li>
+<li class="chapter" data-level="13.2.2" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#create-the-textreusecorpus"><i class="fa fa-check"></i><b>13.2.2</b> Create the TextReuseCorpus</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">2</span> Introduction</h1>
+<div id="unlocking-the-past-with-newspaper-data" class="section level2">
+<h2><span class="header-section-number">2.1</span> Unlocking the past with newspaper data</h2>
+<p>Imagine a historian, similar to that described in the Historian’s Macroscope, sits down to do some research. She is interested in the reception of news about the Crimean War, in Manchester. But where to start? Well, first she narrows down the list of newspapers to consult using an interactive map. For this research, she’ll look at everything published in Manchester between 1853 and 1857. But also, she’s interested in a more fine-grained group of titles: this will specifically be a study of the established press: so those that lasted a long time, at least fifty years in total. And while she’s at it, she’ll specify that she’s only interested in the Liberal press, using an enriched database of political leanings.</p>
+<p>List of titles in hand, she goes the BL Open Repository and finds the openly accessible ones, and downloads the relevant files, in .xml format. From here she extracts the text, article by article, into a single corpus. She makes a list of search terms which she thinks will help to narrow things down, and, using this, restricts her new corpus to articles about the Crimean war, as best as possible.</p>
+<p>First she looks at the most frequent terms: the usual suspects are there, of course - but once she filters out the ‘stop words’ she sees some potentially patterns, and notes down some words to dig into later. Giving the top ten per month is also interesting, and shows a shift from words relating to the diplomacy of the conflict, to more potentially more ‘emotive’ language, describing individual battles.</p>
+<p>Next she creates a 20 topic model to see if there is any difference between the types of articles in her corpus, which shows a few ‘themes’ under which the articles can be grouped together: one with words like <em>steamer</em>, <em>navy</em>, <em>Sebastopol</em> as its most important words is an unusual grouping, and might be worth exploring.</p>
+<p>Using sentiment analysis the historian of the Crimean war notices a shift towards reporting with more negative words, and a cluster of particularly negative articles in late 1854: when the reports of the failed military action during the Battle of Baklava started to trickle through: an event which was immortalised only weeks later in Tennyson’s narrative poem <em>The Charge of the Light Brigade</em>. Not surprising, perhaps, but a reassuring confirmation.</p>
+<p>How were these titles sharing information? Using techniques to find overlapping shared text across multiple documents, she works out that the flow of information moved from the established dailies to the weekly titles.</p>
+<p>This is not too far into the future: we’re starting to make data openly available. The tools, which only a few years ago were restricted to experts, are now unimaginably easier to use.</p>
+<p>Things have moved on from the first generation of ‘how-to’ guides for digital humanities students: it’s now fairly reasonable to pick a language, probably R or Python, and do all analysis, writing, documentation and so forth without ever leaving the safety of its ecosystem. These modern languages have a huge number of packages for doing all sorts of interesting analysis of text, and even authoring entire books.</p>
+<p>On the other hand, the promise of scraping the web for open data, while still with its place, has in many ways been superseded. The historian looking to use newspaper data must wrestle with closed systems, proprietary formats and so forth. The sheer quantity of newspaper data, and its commercial roots (and perhaps new commercial future), mean that it has not been treated in the same way as many other historical datasets. Newspaper data has, up until recently, had several financial, legal, bureaucratic and technical hurdles.</p>
+</div>
+<div id="what-can-you-do-with-newspaper-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> What can you do with newspaper data?</h2>
+<p>There is a <em>lot</em> of newspaper data available now for historical researchers. Across the globe, the keepers of cultural memory are digitising their collections. Most news digitisation projects do OCR and zoning, meaning that the digitised images are processed so that the text is machine readable, and then divided into articles. It’s far from perfect - we’ll show some examples in a later chapter - but it does generate a large amount of data: both the digitised images, and the underlying text and information about the structure. Once you get hold of this data, the rewards can be huge: looking just at English-language users in the last few years, researchers have used it to understand Victorian jokes, trace the movement of information and ideas, understand the effects of industrialisation, track the meetings of radical groups, and of course understand more about the newspapers themselves and the print culture that surrounds them.</p>
+<p>While there has been a lot digitised, their is much, much more still to be done. The collection, in any country, is far from representative. But we must work with what we’ve got. The new histories of the press will be written by looking at text at scale, drawing broad conclusions, understanding genre, authorship and so forth through data analysis.</p>
+<p>We’re just at the beginning: in the last few years projects have been using neural networks methods to improve the kinds of things we can do: the Living with machines project, for example, or several projects at the Royal Library in the Netherlands. The methods I describe here are simplistic, but they can still add to our understanding.</p>
+</div>
+<div id="goals" class="section level2">
+<h2><span class="header-section-number">2.3</span> Goals</h2>
+<p>This short book hopes to help you:</p>
+<ul>
+<li>Know what British Library newspaper data is openly available, where it is, and where to look for more coming onstream.</li>
+<li>Understand something of the XML format which make up the Library’s current crop of openly available newspapers.</li>
+<li>Have a process for extracting the plain text of the newspaper in a format which is easy to use.</li>
+<li>Have been introduced to a number of tools which are particularly useful for large-scale text mining of huge corpora: n-gram counters, topic modelling, text re-use.</li>
+<li>Understand how the tools can be used to answer some basic historical questions (whether they provide answers, I’ll leave for the reader and historian to decide)</li>
+</ul>
+<p><span class="citation"><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></span></p>
+</div>
+<div id="why-r" class="section level2">
+<h2><span class="header-section-number">2.4</span> Why R?</h2>
+<p>R is a programming language, much like Python. In the last few years it has become widely used by data scientists, those using digital humanities techniques, and social sciences. It has some advantages for a novice to programming: thanks to a very widely-used platform (called an Integrated Programming Environment or IDE) for the language called R-Studio, it is particularly easy to get up and running, writing code and drawing graphs, than many other languages. A lot of this is because of developers who have extended the functionality of the ‘base’ language greatly, particularly a suite of extra functions known collectively as the ‘tidyverse’. More on that in a bit.</p>
+<p>I think R comes into its own when its potential for mashups are realised: you could, for example, use <em>sf</em> draw a buffer around all of the UK’s waterways (or railways, or whatever), compare sentiment analysis scores in that newspapers from that buffer using <em>tidytext</em>, before connecting to wikidata and Open Street Map using their APIs and <em>httr</em>, and finally turn your analysis into an application using <em>Shiny</em> - all without leaving R-studio and a pretty common set of data standards.</p>
+<p>This is a handbook made <em>with</em> R, and <em>using</em> R, but it is not really primarily <em>about</em> R. It <em>should</em> be readable by anyone, but it’s possible bits will not be so easy to follow. I apologise in advance for any confusion or difficulties.</p>
+<p>If you’d like to get started with R and the tidyverse in earnest, I recommend some of these tutorials and books:</p>
+<p><a href="http://dh-r.lincolnmullen.com" class="uri">http://dh-r.lincolnmullen.com</a></p>
+<p><a href="https://blog.shotwell.ca/posts/why_i_use_r/" class="uri">https://blog.shotwell.ca/posts/why_i_use_r/</a></p>
+<p><a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a></p>
+</div>
+<div id="getting-started" class="section level2">
+<h2><span class="header-section-number">2.5</span> Getting started</h2>
+<p>The only requirements to get through these tutorials are to install R and R-Studio, as well as some data which needs to be downloaded separately.</p>
+<div id="download-r-and-r-studio" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Download R and R-Studio</h3>
+<p>R and R-Studio are two separate things. R will work without R-studio, but not the other way around, and so it should be downloaded first. It <em>should</em> be a simple process: Go to the download page here: <a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>, select a download mirror, and download the correct version for your operating system. Follow the installation instructions here: <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a> if you get stuck, but it should be fairly painless.</p>
+<p>Next, download R-Studio here: <a href="https://rstudio.com/products/rstudio/" class="uri">https://rstudio.com/products/rstudio/</a>. You’ll want the desktop version and again, download the correct version and follow the instructions. When both of these are installed, you just need to open R-Studio, and it should run the underlying software R automatically.</p>
+<p>At this point, I would highly recommend reading a beginners guide to R and R-studio, such as this one: <a href="https://moderndive.netlify.com/1-getting-started.html" class="uri">https://moderndive.netlify.com/1-getting-started.html</a> to familiarise yourself with the layout and some of the basic functionality of R-Studio. Once you understand where to type and save code, where your files and dataframes live, and how to import data from spreadsheets, you should be good to start experimenting with newspaper data.</p>
+<p>R relies on lots of additional packages for full functionality, and you’ll need to install these by using the function <code>install.packages()</code>, folled by the package name, in inverted commas. I recommend doing this to install the tidyverse suite of packages by running <code>install.packages('tidyverse')</code> in the Console window (the bottom-left of the screen in R-Studio) as you’ll end up using this all the time.</p>
+</div>
+</div>
+<div id="who-is-the-guide-for" class="section level2">
+<h2><span class="header-section-number">2.6</span> Who is the guide for?</h2>
+<p>Historians looking to understand news at scale. Undergraduates and postgrads looking to dip their feet into computational methods.</p>
+<p>Imagine a PhD student, hasn’t used newspaper data before. What is available? How can she access it? Does she need to visit the library, or will she be happy with what’s available online?</p>
+</div>
+<div id="format-of-the-book" class="section level2">
+<h2><span class="header-section-number">2.7</span> Format of the book</h2>
+<p>The book doesn’t need to be read in its entirety: if you’re just interested in finding newspaper data, specifically that collected by the British Library, you could stick with the first part. You might be a much better programmer than me and just interested in the scope of the Library’s datasets for some analysis - for instance, it might be useful to look at the bits on the BNA and JISC digitisation projects, to get a handle on how representative the data you have is. You might have arrived at the Library to do some research and not know where to begin with our folder structure and so forth. As much of that information as possible has been included.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Thomas T. Hills and others, ‘Historical Analysis of National Subjective Wellbeing Using Millions of Digitized Books’, <em>Nature Human Behaviour</em>, 3.12 (2019), 1271–5 &lt;<a href="https://doi.org/10.1038/s41562-019-0750-z">https://doi.org/10.1038/s41562-019-0750-z</a>&gt;.<a href="introduction.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="uk-newspaper-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
