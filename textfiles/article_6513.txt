@@ -1,0 +1,2 @@
+text
+for  111 STYLE=superscript  50  11 STYLE=superscript  ng  Jt

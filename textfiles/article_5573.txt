@@ -1,0 +1,2 @@
+text
+‘ STYLE=superscript  ;  14) STYLE=superscript

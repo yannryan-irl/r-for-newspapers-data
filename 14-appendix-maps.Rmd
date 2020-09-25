@@ -1,0 +1,135 @@
+# Appendix: Maps Digitised Newspapers around the World
+
+
+Many national libraries now publish lists of newspapers. As I find them, I'll add interactive maps here. 
+## United Kingdom
+
+Based on a 'live' title list provided by the British Newspaper Archive:
+
+
+```{r include=FALSE}
+leaflet_list = title_list %>% 
+  filter(!is.na(link_to_british_newspaper_archive)) %>% 
+  left_join(geocoded) %>% 
+  group_by(wikititle, wikilon, wikilat) %>% 
+  tally()
+```
+```{r include=FALSE}
+library(leaflet)
+```
+```{r include=FALSE}
+links = title_list %>% 
+  left_join(geocoded) %>% 
+  group_by(wikititle, wikilon, wikilat) %>%
+            filter(!is.na(link_to_british_newspaper_archive)) %>%
+            distinct(nid, .keep_all = TRUE) %>%
+            summarise(link = paste("<p><a href=",
+                                   link_to_british_newspaper_archive,">",
+                                   publication_title,"</a>", 
+                                   first_date_held, " - ", 
+                                   last_date_held, "</p>\n", 
+                                   collapse = "\n"))
+
+
+```
+
+```{r include=FALSE}
+leaflet_list = leaflet_list %>% left_join(links) %>% filter(!is.na(link))
+```
+```{r include=FALSE}
+lat <- 53.442788
+lng <- -2.244708
+zoom <- 5
+pal1871 <- colorBin("viridis", domain=leaflet_list$n, bins = c(0,5,10,15,20,25,30,35,Inf))
+```
+
+```{r include=FALSE}
+popup_sb <- paste0(leaflet_list$wikititle, "\n", "Total unique titles: ", leaflet_list$n)
+leaflet_list  = leaflet_list %>% ungroup() %>% mutate(wikilon = as.numeric(wikilon)) %>% mutate(wikilat = as.numeric(wikilat))
+
+popup_sblab <- leaflet_list$link
+
+```
+
+```{r echo=FALSE, fig.cap = "Interactive map of the JISC Newspapers"}
+leaflet() %>%  
+            addTiles(
+            ) %>% 
+            setView(lat = lat, lng = lng, zoom = zoom)%>% 
+            clearShapes() %>% 
+            clearControls() %>%
+  addCircleMarkers(data = leaflet_list %>% mutate(n = replace(n, wikititle == 'London', 40)),lng = ~wikilon, lat = ~wikilat, weight = 1, #cheat and change London to a smaller number, so it doesn't overlap other points
+    radius = ~n*.25 %>% sqrt(), ,
+                        fillColor = ~pal1871(n),fillOpacity = 0.7,
+                        color = "gray95",popup = ~popup_sblab,
+                        popupOptions = popupOptions(maxHeight = 100), label=popup_sb,
+                        labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto")
+  ) %>%
+            addLegend(pal = pal1871, 
+                      values = n,
+                      opacity = 0.7,
+                      position = 'bottomright',
+                      title = 'Unique titles:')
+```
+
+
+
+## United States
+
+Based on a list of newspapers published [here](https://chroniclingamerica.loc.gov/newspapers.txt).
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+usa_newspaper_title_list = read_delim('https://chroniclingamerica.loc.gov/newspapers.txt', delim = '|')
+
+colnames(usa_newspaper_title_list) = to_snake_case(colnames(usa_newspaper_title_list))
+
+state_totals = usa_newspaper_title_list %>% group_by(state) %>% summarise(total = n(), popup = paste0('<a href="',persistent_link,'">', title, '</a>', collapse = '<br>'))
+
+
+
+usa = st_read('/Users/Yann/Documents/non-Github/r-for-newspaper-data/cb_2013_us_state_20m/cb_2013_us_state_20m.shp')
+```
+
+
+
+```{r include=FALSE}
+library(leaflet)
+```
+
+```{r include=FALSE}
+lat <- 39.187965
+lng <- -96.510456
+zoom <- 3
+pal1871 <- colorBin("viridis", domain=usa$total)
+```
+
+```{r include=FALSE}
+
+
+
+popup_sblab <- usa$popup
+
+usa = usa %>% left_join(state_totals %>% mutate(state = trimws(state, which = 'both')), by = c('NAME' = 'state'))
+popup_sb <- paste0(usa$NAME, "\n", "Total unique titles: ", usa$total)
+```
+
+```{r echo=FALSE, fig.cap = "Interactive map of Library of Congress Newspapers"}
+leaflet() %>%  
+            addTiles(
+            ) %>% 
+            setView(lat = lat, lng = lng, zoom = zoom)%>% 
+            clearShapes() %>% 
+            clearControls() %>%
+  addPolygons(data = usa, weight = 2, stroke = TRUE,
+                        fillColor = ~pal1871(total), fillOpacity = 0.7,
+                        color = "black",popup = ~popup_sblab,
+                        popupOptions = popupOptions(maxHeight = 100), label=popup_sb,
+                        labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto")
+  ) 
+```

@@ -1,0 +1,2 @@
+text
+"`nlg  ()1  1  4;  11 STYLE=superscript  a STYLE=superscript  -.4,  •  q  t  bsi  R"

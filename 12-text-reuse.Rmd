@@ -158,7 +158,7 @@ However, it would be very difficult, even for a computer, to use this to compare
 First create the buckets. You can try other values for the bands. 
 
 ```{r message=FALSE, warning=FALSE}
-buckets <- lsh(reusecorpus, bands = 80, progress = TRUE)
+buckets <- lsh(reusecorpus, bands = 80, progress = FALSE)
 ```
 
 Next, use ```lsh_candidates()``` to compare each bucket, and generate a list of candidates. 

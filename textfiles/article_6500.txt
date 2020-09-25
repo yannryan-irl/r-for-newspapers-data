@@ -1,0 +1,2 @@
+text
+E2  - STYLE=superscript  0  4 STYLE=superscript  r1  ;4  14  t(

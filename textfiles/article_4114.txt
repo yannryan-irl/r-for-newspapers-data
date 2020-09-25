@@ -1,0 +1,2 @@
+text
+kt  I  1  7 STYLE=superscript  ly

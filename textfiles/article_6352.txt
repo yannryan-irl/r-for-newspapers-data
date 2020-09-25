@@ -1,0 +1,2 @@
+text
+o  0 STYLE=superscript  s  0 STYLE=superscript  0  0  o

@@ -1,0 +1,2 @@
+text
+"1F,  2,5  fdt  t( STYLE=superscript  t STYLE=superscript  :  tl  F  l  b  kk  ka  clett;"

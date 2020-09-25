@@ -1,0 +1,2 @@
+text
+"..  i  , STYLE=superscript  ..  0  ..  0  ..  w"

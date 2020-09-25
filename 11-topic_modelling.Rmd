@@ -67,7 +67,7 @@ result <- tidytext::tidy(lda_model_long_1, 'beta')
 
 We can plot the top words which make up each of the topics, to get an idea of how the articles have been categorised. Some of these make sense: there's a topic which seems to be about university and education, one with words relating to poor laws, and a couple about disease in the army, as well as some more which contain words probably related to the Crimean war. 
 
-```{r fig.cap = "Sample Topics", fig.height=800}
+```{r fig.cap = "Sample Topics", fig.height=16}
 result %>%
     group_by(topic) %>%
     top_n(5, beta) %>%

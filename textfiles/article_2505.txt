@@ -1,0 +1,2 @@
+text
+"y  01  4 STYLE=superscript  2,t  f STYLE=superscript  .  .711:11"

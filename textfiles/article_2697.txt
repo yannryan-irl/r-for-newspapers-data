@@ -1,0 +1,2 @@
+text
+"27,  r STYLE=superscript  i4  Erj  in  Y STYLE=superscript  do  Le  4,0"

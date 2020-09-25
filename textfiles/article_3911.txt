@@ -1,0 +1,2 @@
+text
+At  ' STYLE=superscript  Z  I STYLE=superscript  A  10  e

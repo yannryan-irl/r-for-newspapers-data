@@ -1,0 +1,2 @@
+text
+7  - STYLE=superscript  1  rri  rTiri  T  1

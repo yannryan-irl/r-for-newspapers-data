@@ -1,0 +1,2 @@
+text
+teA  4 STYLE=superscript  P  I:''att(

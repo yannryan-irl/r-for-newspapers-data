@@ -1,0 +1,2 @@
+text
+"a  4  ad  3  5 STYLE=superscript  •  0  1  1 STYLE=superscript  '  red'  , STYLE=superscript  •"

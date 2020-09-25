@@ -1,0 +1,2 @@
+text
+"'  , STYLE=superscript  4;.‘  10 STYLE=superscript  ="

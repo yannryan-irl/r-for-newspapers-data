@@ -1,0 +1,2 @@
+text
+discs  reel  eq  t STYLE=superscript  27  11 STYLE=superscript  '  1' STYLE=superscript  0  .ed  c  0  o  fir' STYLE=superscript  1  a  bell'  e  t  c  h:  !it/

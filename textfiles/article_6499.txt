@@ -1,0 +1,2 @@
+text
+T  11  4  . STYLE=superscript  A  Ig'  The

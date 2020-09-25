@@ -2,6 +2,14 @@
 
 The first thing you might want to do with a large dataset of text is to count the words within it. Doing this with newspaper data can be particularly significant, because it's quite easy to discover trends, reporting practices, and particular events. By count words, and sorting by date, or by title, it's possible to make some interesting comparisons and conclusions in the makeup of different titles, or to understand changes in reporting over time. Again, as this is a small sample, the conclusions will be light, but the aim is the show the method.
 
+As an example, here is a Shiny application using a sample of text from British Library newspapers. Search for a word below and browse through a number of ways to visualise it.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=12}
+knitr::include_app('https://yannryan.shinyapps.io/ngram_news_sample/')
+```
+
+
+
 ## Load the news dataframe and relevant libraries
 The first thing is to take the newss dataframe, as made in the previous chapter, and load it into memory, if it isn't already. 
 

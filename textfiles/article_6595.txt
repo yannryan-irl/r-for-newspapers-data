@@ -1,0 +1,2 @@
+text
+"of  , STYLE=superscript  t.D  ..  C  . STYLE=superscript  3  C.  3  1,--."

@@ -1,0 +1,2 @@
+text
+"A  1  5 STYLE=superscript  1,  klk"

@@ -1,0 +1,2 @@
+text
+1 STYLE=superscript  1(;  )4 STYLE=superscript  i  thN

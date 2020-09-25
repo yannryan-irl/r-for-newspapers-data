@@ -1,0 +1,2 @@
+text
+", STYLE=superscript  1  George  2500  Ba:"

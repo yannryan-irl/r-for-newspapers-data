@@ -1,0 +1,2 @@
+text
+"1F STYLE=superscript  ,  :, STYLE=superscript  1  &#34;~`~'"

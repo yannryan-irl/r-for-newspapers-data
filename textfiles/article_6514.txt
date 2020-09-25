@@ -1,0 +1,2 @@
+text
+"wf  ,3, STYLE=superscript  10  . STYLE=superscript  Bog  O,"

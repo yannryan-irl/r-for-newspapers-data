@@ -1,0 +1,2 @@
+text
+46  - STYLE=superscript  .

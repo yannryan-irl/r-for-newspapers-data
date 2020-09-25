@@ -1,0 +1,2 @@
+text
+ej  4  cll  b STYLE=superscript  pt  OP  4  1 STYLE=superscript  clistved

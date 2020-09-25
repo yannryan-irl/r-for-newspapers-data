@@ -1,0 +1,2 @@
+text
+"QUEBEC  , STYLE=superscript  cond  C"
