@@ -6,7 +6,6 @@ Many national libraries now publish lists of newspapers. As I find them, I'll ad
 
 Based on a 'live' title list provided by the British Newspaper Archive:
 
-
 ```{r include=FALSE}
 leaflet_list = title_list %>% 
   filter(!is.na(link_to_british_newspaper_archive)) %>% 

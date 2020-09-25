@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Quick introduction to R and the tidyverse | A short guide to using British Library Newspaper Data, using R</title>
+  <title>5 Quick introduction to R and the tidyverse | A Short Guide to Historical Newspaper Data, Using R</title>
   <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Quick introduction to R and the tidyverse | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:title" content="5 Quick introduction to R and the tidyverse | A Short Guide to Historical Newspaper Data, Using R" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+  <meta name="github-repo" content="yannryan-irl/r-for-newspapers-data" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Quick introduction to R and the tidyverse | A short guide to using British Library Newspaper Data, using R" />
+  <meta name="twitter:title" content="5 Quick introduction to R and the tidyverse | A Short Guide to Historical Newspaper Data, Using R" />
   
   <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Yann Ryan" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ocr-and-its-problems.html"/>
+<link rel="prev" href="historic-newspaper-ocr-accuracy.html"/>
 <link rel="next" href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -57,7 +57,7 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
 <li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#contribute"><i class="fa fa-check"></i><b>2.8</b> Contribute</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
@@ -160,19 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
-<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
-<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
-<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
-<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+<li class="chapter" data-level="4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html"><i class="fa fa-check"></i><b>4</b> Historic Newspaper OCR Accuracy</a><ul>
+<li class="chapter" data-level="4.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#what-is-it-like-in-19th-century-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in 19th century newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#ocr-report-on-some-batches-of-historical-newspapers"><i class="fa fa-check"></i><b>4.3</b> OCR report on some batches of historical newspapers</a></li>
+<li class="chapter" data-level="4.4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#whats-in-this-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in this data?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
-<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
-<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
-<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
-<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
@@ -267,6 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+<li class="chapter" data-level="15" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html"><i class="fa fa-check"></i><b>15</b> Appendix: Maps Digitised Newspapers around the World</a><ul>
+<li class="chapter" data-level="15.1" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html#united-states"><i class="fa fa-check"></i><b>15.1</b> United States</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -276,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Short Guide to Historical Newspaper Data, Using R</a>
           </h1>
         </div>
 
@@ -642,7 +646,7 @@ Figure 5.5: barchart
           </div>
         </div>
       </div>
-<a href="ocr-and-its-problems.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="historic-newspaper-ocr-accuracy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -79,5 +79,7 @@ Imagine a PhD student, hasn't used newspaper data before. What is available? How
 
 The book doesn't need to be read in its entirety: if you're just interested in finding newspaper data, specifically that collected by the British Library, you could stick with the first part. You might be a much better programmer than me and just interested in the scope of the Library's datasets for some analysis - for instance, it might be useful to look at the bits on the BNA and JISC digitisation projects, to get a handle on how representative the data you have is. You might have arrived at the Library to do some research and not know where to begin with our folder structure and so forth. As much of that information as possible has been included.
 
+## Contribute
 
+The book has been written using Bookdown, which turns pages of code into figures and text, exposing the parts of the code when necessary, and hiding it in other cases. It lives on a GitHub repository, here: and the underlying code can be freely downloaded and re-created or altered. If you'd like to contribute, anything from a few corrections to an entire new chapter, please feel free to get in touch via the Github issues page or just fork the repository and request a merge when you're done. 
 

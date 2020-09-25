@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13 Detecting text reuse in newspaper articles. | A short guide to using British Library Newspaper Data, using R</title>
+  <title>13 Detecting text reuse in newspaper articles. | A Short Guide to Historical Newspaper Data, Using R</title>
   <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13 Detecting text reuse in newspaper articles. | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:title" content="13 Detecting text reuse in newspaper articles. | A Short Guide to Historical Newspaper Data, Using R" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+  <meta name="github-repo" content="yannryan-irl/r-for-newspapers-data" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13 Detecting text reuse in newspaper articles. | A short guide to using British Library Newspaper Data, using R" />
+  <meta name="twitter:title" content="13 Detecting text reuse in newspaper articles. | A Short Guide to Historical Newspaper Data, Using R" />
   
   <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Yann Ryan" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,7 +57,7 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
 <li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#contribute"><i class="fa fa-check"></i><b>2.8</b> Contribute</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
@@ -160,19 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
-<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
-<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
-<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
-<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+<li class="chapter" data-level="4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html"><i class="fa fa-check"></i><b>4</b> Historic Newspaper OCR Accuracy</a><ul>
+<li class="chapter" data-level="4.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#what-is-it-like-in-19th-century-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in 19th century newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#ocr-report-on-some-batches-of-historical-newspapers"><i class="fa fa-check"></i><b>4.3</b> OCR report on some batches of historical newspapers</a></li>
+<li class="chapter" data-level="4.4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#whats-in-this-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in this data?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
-<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
-<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
-<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
-<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
@@ -267,6 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+<li class="chapter" data-level="15" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html"><i class="fa fa-check"></i><b>15</b> Appendix: Maps Digitised Newspapers around the World</a><ul>
+<li class="chapter" data-level="15.1" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html#united-states"><i class="fa fa-check"></i><b>15.1</b> United States</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -276,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Short Guide to Historical Newspaper Data, Using R</a>
           </h1>
         </div>
 
@@ -389,360 +393,17 @@ also be tokenize words</p>
 <p>LSH breaks the minhashes into a series of bands comprised of rows. For example, 200 minhashes might broken into 50 bands of 4 rows each. Each band is hashed to a bucket. If two documents have the exact same minhashes in a band, they will be hashed to the same bucket, and so will be considered candidate pairs. Each pair of documents has as many chances to be considered a candidate as their are bands, and the fewer rows there are in each band, the more likely it is that each document will match another. (<a href="https://cran.r-project.org/web/packages/textreuse/vignettes/textreuse-minhash.html" class="uri">https://cran.r-project.org/web/packages/textreuse/vignettes/textreuse-minhash.html</a>)</p>
 </blockquote>
 <p>First create the buckets. You can try other values for the bands.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">buckets &lt;-<span class="st"> </span><span class="kw">lsh</span>(reusecorpus, <span class="dt">bands =</span> <span class="dv">80</span>, <span class="dt">progress =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## 
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |                                                                      |   1%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |==                                                                    |   4%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |===                                                                   |   5%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |=======                                                               |  11%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |=========                                                             |  14%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |============                                                          |  18%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |==============                                                        |  21%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |================                                                      |  23%
-  |                                                                            
-  |================                                                      |  24%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |=================                                                     |  25%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |=====================                                                 |  31%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |=======================                                               |  34%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |=========================                                             |  35%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |============================                                          |  41%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |==============================                                        |  44%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |===============================                                       |  45%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |===================================                                   |  51%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |=====================================                                 |  54%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  56%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |=========================================                             |  58%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |==========================================                            |  61%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |============================================                          |  62%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |============================================                          |  64%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |=============================================                         |  65%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  69%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |=================================================                     |  71%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |===================================================                   |  74%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |========================================================              |  81%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |==========================================================            |  84%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |===========================================================           |  85%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |==============================================================        |  89%
-  |                                                                            
-  |===============================================================       |  89%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |===============================================================       |  91%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |=================================================================     |  94%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |====================================================================  |  98%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================|  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1">buckets &lt;-<span class="st"> </span><span class="kw">lsh</span>(reusecorpus, <span class="dt">bands =</span> <span class="dv">80</span>, <span class="dt">progress =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Next, use <code>lsh_candidates()</code> to compare each bucket, and generate a list of candidates.</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">candidates &lt;-<span class="st"> </span><span class="kw">lsh_candidates</span>(buckets)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">candidates &lt;-<span class="st"> </span><span class="kw">lsh_candidates</span>(buckets)</a></code></pre></div>
 <p>Next we go back to the full corpus, and calculate the similarity score for these pairs, using <code>lsh_compare()</code>. The first argument is the candidates, the second is the full corpus, the third is the method (other similarity functions could be used).</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1">jacsimilarity_both =<span class="st"> </span><span class="kw">lsh_compare</span>(candidates, </a>
-<a class="sourceLine" id="cb207-2" data-line-number="2">                                 reusecorpus, </a>
-<a class="sourceLine" id="cb207-3" data-line-number="3">                                 jaccard_similarity, </a>
-<a class="sourceLine" id="cb207-4" data-line-number="4">                                 <span class="dt">progress =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb207-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(score))</a>
-<a class="sourceLine" id="cb207-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb207-7" data-line-number="7">jacsimilarity_both</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">jacsimilarity_both =<span class="st"> </span><span class="kw">lsh_compare</span>(candidates, </a>
+<a class="sourceLine" id="cb206-2" data-line-number="2">                                 reusecorpus, </a>
+<a class="sourceLine" id="cb206-3" data-line-number="3">                                 jaccard_similarity, </a>
+<a class="sourceLine" id="cb206-4" data-line-number="4">                                 <span class="dt">progress =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb206-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(score))</a>
+<a class="sourceLine" id="cb206-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb206-7" data-line-number="7">jacsimilarity_both</a></code></pre></div>
 <pre><code>## # A tibble: 7,423 x 3
 ##    a            b            score
 ##    &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
@@ -759,19 +420,19 @@ also be tokenize words</p>
 ## # … with 7,413 more rows</code></pre>
 <p>It returns a similarity score for each pair: The first pair have a 25% overlap, and the second a much smaller number.</p>
 <p>The last thing is to join up the article codes to the full text dataset, and actually see what pairs have been detected. This is done using two <code>left_join()</code> commands, one for a and one for b. Also select just the relevant columns, and filter out those with a perfect score as they are very likely to be artefacts rather than full articles, and filter out those where both documents are from the same issue.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">matchedtexts =<span class="st"> </span>jacsimilarity_both <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb209-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(news_sample_dataframe, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span> =<span class="st"> &#39;article_code&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb209-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(news_sample_dataframe, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;b&#39;</span> =<span class="st"> &#39;article_code&#39;</span>))<span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb209-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(a,b,score, text.x, text.y, title.x, title.y, full_date.x, full_date.y)</a>
-<a class="sourceLine" id="cb209-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb209-6" data-line-number="6">matchedtexts =<span class="st"> </span>matchedtexts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(score<span class="op">&lt;</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(full_date.x <span class="op">!=</span><span class="st"> </span>full_date.y)</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">matchedtexts =<span class="st"> </span>jacsimilarity_both <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(news_sample_dataframe, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span> =<span class="st"> &#39;article_code&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb208-3" data-line-number="3"><span class="st">  </span><span class="kw">left_join</span>(news_sample_dataframe, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;b&#39;</span> =<span class="st"> &#39;article_code&#39;</span>))<span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb208-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(a,b,score, text.x, text.y, title.x, title.y, full_date.x, full_date.y)</a>
+<a class="sourceLine" id="cb208-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb208-6" data-line-number="6">matchedtexts =<span class="st"> </span>matchedtexts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(score<span class="op">&lt;</span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(full_date.x <span class="op">!=</span><span class="st"> </span>full_date.y)</a></code></pre></div>
 <p>To check the specific overlap of two documnets, use another function from textreuse to check the ‘local alignment’. This is like comparing two documents in Microsoft Word: it finds the bit of the text with the most overlap, and it points out where in this overlap there are different words, replacing them with ######</p>
 <p>First turn the text in each cell into a string:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1">a =<span class="st"> </span><span class="kw">paste</span>(matchedtexts<span class="op">$</span>text.x[<span class="dv">3</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb210-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb210-3" data-line-number="3">b =<span class="st">  </span><span class="kw">paste</span>(matchedtexts<span class="op">$</span>text.y[<span class="dv">3</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">a =<span class="st"> </span><span class="kw">paste</span>(matchedtexts<span class="op">$</span>text.x[<span class="dv">3</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb209-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb209-3" data-line-number="3">b =<span class="st">  </span><span class="kw">paste</span>(matchedtexts<span class="op">$</span>text.y[<span class="dv">3</span>], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>, <span class="dt">collapse=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <p>Call the <code>align_local()</code> function, giving it the two strings to compare.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">align_local</span>(a, b)</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">align_local</span>(a, b)</a></code></pre></div>
 <pre><code>## TextReuse alignment
 ## Alignment score: 165 
 ## Document A:

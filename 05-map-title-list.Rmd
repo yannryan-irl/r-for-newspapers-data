@@ -7,11 +7,6 @@ output:
 
 R is great for making maps, whether for visualising historical material or doing more advanced analysis. Using an openly available list of British Library titles, with some additional coordinate information, it's possible to very quickly make high-quality, publishable maps. 
 
-```{r echo=FALSE, fig.height=6, fig.width=6, fig.cap = "British Library newspaper titles, mapped by city. Maps like this are easy to produce using R."}
-knitr::include_graphics('title_list_map.png')
-```
-
-
 
 ## Mapping with ggplot2 and mapdata
 

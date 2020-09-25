@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A short guide to using British Library Newspaper Data, using R</title>
+  <title>6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A Short Guide to Historical Newspaper Data, Using R</title>
   <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:title" content="6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A Short Guide to Historical Newspaper Data, Using R" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+  <meta name="github-repo" content="yannryan-irl/r-for-newspapers-data" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A short guide to using British Library Newspaper Data, using R" />
+  <meta name="twitter:title" content="6 Mapping with R: Geocode and Map the British Library’s Newspaper Collection | A Short Guide to Historical Newspaper Data, Using R" />
   
   <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Yann Ryan" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,7 +57,7 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
 <li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#contribute"><i class="fa fa-check"></i><b>2.8</b> Contribute</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
@@ -160,19 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
-<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
-<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
-<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
-<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+<li class="chapter" data-level="4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html"><i class="fa fa-check"></i><b>4</b> Historic Newspaper OCR Accuracy</a><ul>
+<li class="chapter" data-level="4.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#what-is-it-like-in-19th-century-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in 19th century newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#ocr-report-on-some-batches-of-historical-newspapers"><i class="fa fa-check"></i><b>4.3</b> OCR report on some batches of historical newspapers</a></li>
+<li class="chapter" data-level="4.4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#whats-in-this-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in this data?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
-<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
-<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
-<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
-<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
@@ -267,6 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+<li class="chapter" data-level="15" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html"><i class="fa fa-check"></i><b>15</b> Appendix: Maps Digitised Newspapers around the World</a><ul>
+<li class="chapter" data-level="15.1" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html#united-states"><i class="fa fa-check"></i><b>15.1</b> United States</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -276,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Short Guide to Historical Newspaper Data, Using R</a>
           </h1>
         </div>
 
@@ -287,12 +291,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mapping-with-r-geocode-and-map-the-british-librarys-newspaper-collection" class="section level1">
 <h1><span class="header-section-number">6</span> Mapping with R: Geocode and Map the British Library’s Newspaper Collection</h1>
 <p>R is great for making maps, whether for visualising historical material or doing more advanced analysis. Using an openly available list of British Library titles, with some additional coordinate information, it’s possible to very quickly make high-quality, publishable maps.</p>
-<div class="figure"><span id="fig:unnamed-chunk-63"></span>
-<img src="title_list_map.png" alt="British Library newspaper titles, mapped by city. Maps like this are easy to produce using R."  />
-<p class="caption">
-Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are easy to produce using R.
-</p>
-</div>
 <div id="mapping-with-ggplot2-and-mapdata" class="section level2">
 <h2><span class="header-section-number">6.1</span> Mapping with ggplot2 and mapdata</h2>
 <div id="a-map-of-british-newspapers-by-city" class="section level3">
@@ -320,7 +318,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">long</th>
 <th align="right">lat</th>
 <th align="right">group</th>
@@ -331,7 +329,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
+<td align="left">1</td>
 <td align="right">-69.89912</td>
 <td align="right">12.45200</td>
 <td align="right">1</td>
@@ -340,7 +338,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>2</td>
+<td align="left">2</td>
 <td align="right">-69.89571</td>
 <td align="right">12.42300</td>
 <td align="right">1</td>
@@ -349,7 +347,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>3</td>
+<td align="left">3</td>
 <td align="right">-69.94219</td>
 <td align="right">12.43853</td>
 <td align="right">1</td>
@@ -358,7 +356,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>4</td>
+<td align="left">4</td>
 <td align="right">-70.00415</td>
 <td align="right">12.50049</td>
 <td align="right">1</td>
@@ -367,7 +365,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>5</td>
+<td align="left">5</td>
 <td align="right">-70.06612</td>
 <td align="right">12.54697</td>
 <td align="right">1</td>
@@ -376,7 +374,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>6</td>
+<td align="left">6</td>
 <td align="right">-70.05088</td>
 <td align="right">12.59707</td>
 <td align="right">1</td>
@@ -385,7 +383,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>7</td>
+<td align="left">7</td>
 <td align="right">-70.03511</td>
 <td align="right">12.61411</td>
 <td align="right">1</td>
@@ -394,7 +392,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>8</td>
+<td align="left">8</td>
 <td align="right">-69.97314</td>
 <td align="right">12.56763</td>
 <td align="right">1</td>
@@ -403,7 +401,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>9</td>
+<td align="left">9</td>
 <td align="right">-69.91181</td>
 <td align="right">12.48047</td>
 <td align="right">1</td>
@@ -412,7 +410,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>10</td>
+<td align="left">10</td>
 <td align="right">-69.89912</td>
 <td align="right">12.45200</td>
 <td align="right">1</td>
@@ -421,7 +419,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>12</td>
+<td align="left">12</td>
 <td align="right">74.89131</td>
 <td align="right">37.23164</td>
 <td align="right">2</td>
@@ -430,7 +428,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>13</td>
+<td align="left">13</td>
 <td align="right">74.84023</td>
 <td align="right">37.22505</td>
 <td align="right">2</td>
@@ -439,7 +437,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>14</td>
+<td align="left">14</td>
 <td align="right">74.76738</td>
 <td align="right">37.24917</td>
 <td align="right">2</td>
@@ -448,7 +446,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>15</td>
+<td align="left">15</td>
 <td align="right">74.73896</td>
 <td align="right">37.28564</td>
 <td align="right">2</td>
@@ -457,7 +455,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>16</td>
+<td align="left">16</td>
 <td align="right">74.72666</td>
 <td align="right">37.29072</td>
 <td align="right">2</td>
@@ -466,7 +464,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>17</td>
+<td align="left">17</td>
 <td align="right">74.66895</td>
 <td align="right">37.26670</td>
 <td align="right">2</td>
@@ -475,7 +473,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>18</td>
+<td align="left">18</td>
 <td align="right">74.55899</td>
 <td align="right">37.23662</td>
 <td align="right">2</td>
@@ -484,7 +482,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>19</td>
+<td align="left">19</td>
 <td align="right">74.37217</td>
 <td align="right">37.15771</td>
 <td align="right">2</td>
@@ -493,7 +491,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td>20</td>
+<td align="left">20</td>
 <td align="right">74.37617</td>
 <td align="right">37.13735</td>
 <td align="right">2</td>
@@ -502,7 +500,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td>21</td>
+<td align="left">21</td>
 <td align="right">74.49796</td>
 <td align="right">37.05722</td>
 <td align="right">2</td>
@@ -517,7 +515,7 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> worldmap, </a>
 <a class="sourceLine" id="cb54-3" data-line-number="3">                        <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group))</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="768" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="768" /></p>
 <p>Right, it needs a <em>bit</em> of tweaking. First, we only want to plot points in the UK. There’s obviously way too much map for this, so the first thing we should do is restrict it to a rectangle which includes those two countries.</p>
 <p>We can do that with <code>coord_fixed()</code>. <code>coord_fixed()</code> is used to fix the aspect ratio of a coordinate system, but can be used to specify a bounding box by using two of its arguments: <code>xlim=</code> and <code>ylim=</code>. These each take a vector (a series of numbers) with two items A vector is created using <code>c()</code>. Each item in the vector specifies the limits for that axis. So <code>xlim = c(0,10)</code> means <em>restrict the x-axis to 0 and 10</em>. The axes correspond to the lines of longitude (x) and latitude (y). We’ll restrict the x-axis to c(-10, 4) and the y-axis to c(50.3, 60) which should just about cover the UK and Ireland.</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> worldmap, </a>
@@ -526,10 +524,10 @@ Figure 6.1: British Library newspaper titles, mapped by city. Maps like this are
 <a class="sourceLine" id="cb55-4" data-line-number="4">                            <span class="dt">group =</span> group)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb55-5" data-line-number="5"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">3</span>), </a>
 <a class="sourceLine" id="cb55-6" data-line-number="6">              <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="fl">50.3</span>, <span class="dv">59</span>))</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-68"></span>
-<img src="_main_files/figure-html/unnamed-chunk-68-1.png" alt="Empty Map" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-67"></span>
+<img src="_main_files/figure-html/unnamed-chunk-67-1.png" alt="Empty Map" width="768" />
 <p class="caption">
-Figure 6.2: Empty Map
+Figure 6.1: Empty Map
 </p>
 </div>
 <p>You can also change the aspect ratio of the coordinates using another ggplot function, <code>coord_fixed()</code>. The default is 1, but by specifying a different one with the argument <code>ratio =</code>, that can be changed. Using <code>ratio = 1.3</code> results in a less squashed-looking map.</p>
@@ -541,10 +539,10 @@ Figure 6.2: Empty Map
 <a class="sourceLine" id="cb56-6" data-line-number="6"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="fl">1.3</span>, </a>
 <a class="sourceLine" id="cb56-7" data-line-number="7">              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">3</span>), </a>
 <a class="sourceLine" id="cb56-8" data-line-number="8">              <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">59</span>))</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-69"></span>
-<img src="_main_files/figure-html/unnamed-chunk-69-1.png" alt="Aspect Ratio Adjustment" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-68"></span>
+<img src="_main_files/figure-html/unnamed-chunk-68-1.png" alt="Aspect Ratio Adjustment" width="768" />
 <p class="caption">
-Figure 6.3: Aspect Ratio Adjustment
+Figure 6.2: Aspect Ratio Adjustment
 </p>
 </div>
 <p>A couple more things, which I’ll run through quickly.</p>
@@ -558,10 +556,10 @@ Figure 6.3: Aspect Ratio Adjustment
 <a class="sourceLine" id="cb57-7" data-line-number="7"><span class="st">  </span><span class="kw">coord_fixed</span>(<span class="dt">ratio =</span> <span class="fl">1.3</span>, </a>
 <a class="sourceLine" id="cb57-8" data-line-number="8">              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">3</span>), </a>
 <a class="sourceLine" id="cb57-9" data-line-number="9">              <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">59</span>))</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-70"></span>
-<img src="_main_files/figure-html/unnamed-chunk-70-1.png" alt="Colours and Fill" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-69"></span>
+<img src="_main_files/figure-html/unnamed-chunk-69-1.png" alt="Colours and Fill" width="768" />
 <p class="caption">
-Figure 6.4: Colours and Fill
+Figure 6.3: Colours and Fill
 </p>
 </div>
 <p>We probably don’t need the grids or panels in the background. We can get rid of these with <code>+ theme_void()</code>.</p>
@@ -575,7 +573,7 @@ Figure 6.4: Colours and Fill
 <a class="sourceLine" id="cb58-8" data-line-number="8">              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">3</span>), </a>
 <a class="sourceLine" id="cb58-9" data-line-number="9">              <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">59</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb58-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="768" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" width="768" /></p>
 </div>
 <div id="add-sized-points-by-coordinates" class="section level2">
 <h2><span class="header-section-number">6.3</span> Add Sized Points By Coordinates</h2>
@@ -809,10 +807,10 @@ Figure 6.4: Colours and Fill
 <a class="sourceLine" id="cb71-8" data-line-number="8">              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">3</span>), </a>
 <a class="sourceLine" id="cb71-9" data-line-number="9">              <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">59</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb71-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_void</span>()</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-83"></span>
-<img src="_main_files/figure-html/unnamed-chunk-83-1.png" alt="Blank Map of UK and Ireland" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-82"></span>
+<img src="_main_files/figure-html/unnamed-chunk-82-1.png" alt="Blank Map of UK and Ireland" width="768" />
 <p class="caption">
-Figure 6.5: Blank Map of UK and Ireland
+Figure 6.4: Blank Map of UK and Ireland
 </p>
 </div>
 </div>
@@ -835,10 +833,10 @@ Figure 6.5: Blank Map of UK and Ireland
 <a class="sourceLine" id="cb72-11" data-line-number="11"><span class="st">  </span><span class="kw">scale_color_viridis_c</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb72-12" data-line-number="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb72-13" data-line-number="13"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>))</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-84"></span>
-<img src="_main_files/figure-html/unnamed-chunk-84-1.png" alt="Finished Map" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-83"></span>
+<img src="_main_files/figure-html/unnamed-chunk-83-1.png" alt="Finished Map" width="768" />
 <p class="caption">
-Figure 6.6: Finished Map
+Figure 6.5: Finished Map
 </p>
 </div>
 </div>
@@ -948,10 +946,10 @@ Plot using geom_sf()</li>
 <a class="sourceLine" id="cb85-10" data-line-number="10"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&#39;left&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb85-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">12</span>), </a>
 <a class="sourceLine" id="cb85-12" data-line-number="12">        <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>))</a></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-99"></span>
-<img src="_main_files/figure-html/unnamed-chunk-99-1.png" alt="Choropleth Made with geom_sf()" width="768" />
+<div class="figure"><span id="fig:unnamed-chunk-98"></span>
+<img src="_main_files/figure-html/unnamed-chunk-98-1.png" alt="Choropleth Made with geom_sf()" width="768" />
 <p class="caption">
-Figure 6.7: Choropleth Made with geom_sf()
+Figure 6.6: Choropleth Made with geom_sf()
 </p>
 </div>
 <p>Further reading:</p>

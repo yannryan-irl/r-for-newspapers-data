@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # UK Newspaper Data
 
 ## Intro to British Library Newspapers

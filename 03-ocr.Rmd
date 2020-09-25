@@ -1,9 +1,9 @@
-# OCR and its problems
+# Historic Newspaper OCR Accuracy
 
 ## Introduction
 OCR, or 'Optical Character Recognition', is a series of methods for turning the text in digitised images into machine-readable code.
 
-## What is it like in BL newspapers?
+## What is it like in 19th century newspapers?
 
 This is a difficult question to answer, because it varies so much between projects, format and dates. The truth is, nobody _really_ knows what it's like, because that would involve having large sets of very accurate, manually transcribed newspapers, to compare to the OCR text. Subjectively, we can probably make a few generalisations. 
 
@@ -19,13 +19,11 @@ This is a difficult question to answer, because it varies so much between projec
 
 * Problems with the physical page have a huge effect: rips, tears, foxing, dark patches and so forth. Many errors are not because of the microfilm, digital image or software, and may not be fixable. 
 
-* What does this all mean? Well, it introduces bias, and probably in non-random ways, but in ways that have implications for our work. If things are digitised from a mix of print and microfilm, for example, we might get very different results for the print portion, which might easily be mis-attributed to a historical finding. Perhaps there were twice as many mentions of cheese in the 1850s than in the 1890s? It's probably best to rule out that this is not just because later newspapers had a difficult font, or they were digitised from microfilm instead of print. [@hill-ocr, @Cordell_2017, @Piotrowski_2012, @cordell-ocr, @evershed-ocr]
+* What does this all mean? Well, it introduces bias, and probably in non-random ways, but in ways that have implications for our work. If things are digitised from a mix of print and microfilm, for example, we might get very different results for the print portion, which might easily be mis-attributed to a significant historical finding.  [@hill-ocr, @Cordell_2017, @Piotrowski_2012, @cordell-ocr, @evershed-ocr]
 
-## OCR report on the first two batches of content on the BL Open Repository
+## OCR report on some batches of historical newspapers
 
-The first two batches of digitised content available on the repository consist of about 290,000 pages (see separate report). This short report evaluates the OCR quality (using one metric), comparing across time and formats. Conclusions are as expected: Processing from print results in significantly higher reported accuracy scores (though this may not reflect real-world OCR tests). The reported accuracy increases dramatically across time, particularly for print titles. 
-
-The files returned from FMP contain a 'predicted word accuracy score' percentage for each page. These can be extracted and visualised, with some interesting conclusions. However it's important to note these are not calculated by comparing actual results to the OCR, but rather use an internal algorithm. Some links worth reading to understand more about OCR and confidence scores:
+The files returned from newspaper digitisers contain a 'predicted word accuracy score' percentage for each page. These can be extracted and visualised, with some interesting conclusions. However it's important to note these are not calculated by comparing actual results to the OCR, but rather use an internal algorithm. Some links worth reading to understand more about OCR and confidence scores:
 
 
 >OCR software calculates a confidence level for each character it detects. Word and page confidence levels can be calculated from the character confidences using algorithms either inside the OCR software or as an external customised process. The OCR software doesn't know whether any character is correct or not – it can only be confident or not confident that it is correct. It will give it a confidence level from 0-9. True accuracy, i.e., whether a character is actually correct, can only be determined by an independent arbiter, a human. This can be done by proofreading articles or pages, or by manually re-keying the entire article or page and comparing the output to the OCR output. These methods are very time consuming. (http://www.dlib.org/dlib/march09/holley/03holley.html)
@@ -141,7 +139,7 @@ batch1_2 = tibble(title,nlp, type)
 
 ## Visualisations:
 
-### What's in the data?
+### What's in this data?
 
 The data includes 290,000 separate ALTO files, each representing one page. From the files, the 'predicted word accuracy' score has been extracted, and turned into a dataframe. The data contains about 117,000 files digitised from microfilm, and 173,000 digitised from print. This makes an interesting dataset to compare OCR quality scores across two different formats, by the same company at the same time. 
 
@@ -186,6 +184,7 @@ all_ocr  %>%
 ## Highest and lowest results:
 
 The lowest results are all from the Lady's Newspaper - this was an illustrated title and so the score is probably meaningless. 
+
 ```{r echo=FALSE}
 knitr::kable(all_ocr %>% arrange(accuracy) %>% head(10))
 ```
@@ -198,7 +197,7 @@ knitr::kable(all_ocr %>% arrange(desc(accuracy)) %>% head(10))
 
 ## Page-by-page OCR visualisation
 
-Another way of looking at pages. Page one is consistently lowest predicted accuracy. The exception is a group of page 1 files in late 1860s: these were copies of the Sun and Central Press which were printed with two columns and large type, and without adverts on the first page.
+We can look at the difference in OCR accuracy by page position. The front page consistently has the lowest predicted accuracy. The exception is a group of first-page files in late 1860s: these were copies of the _Sun and Central Press_ which were printed with two columns and large type, and without adverts on the first page.
 
 In general the predicted accuracy scores move upwards over time, and variation decreases. This is particularly clear in titles processed from print as the ntext  
 

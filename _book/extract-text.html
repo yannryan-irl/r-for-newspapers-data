@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Make a Text Corpus | A short guide to using British Library Newspaper Data, using R</title>
+  <title>8 Make a Text Corpus | A Short Guide to Historical Newspaper Data, Using R</title>
   <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8 Make a Text Corpus | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:title" content="8 Make a Text Corpus | A Short Guide to Historical Newspaper Data, Using R" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+  <meta name="github-repo" content="yannryan-irl/r-for-newspapers-data" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Make a Text Corpus | A short guide to using British Library Newspaper Data, using R" />
+  <meta name="twitter:title" content="8 Make a Text Corpus | A Short Guide to Historical Newspaper Data, Using R" />
   
   <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Yann Ryan" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,7 +57,7 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
 <li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#contribute"><i class="fa fa-check"></i><b>2.8</b> Contribute</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
@@ -160,19 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
-<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
-<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
-<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
-<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+<li class="chapter" data-level="4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html"><i class="fa fa-check"></i><b>4</b> Historic Newspaper OCR Accuracy</a><ul>
+<li class="chapter" data-level="4.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#what-is-it-like-in-19th-century-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in 19th century newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#ocr-report-on-some-batches-of-historical-newspapers"><i class="fa fa-check"></i><b>4.3</b> OCR report on some batches of historical newspapers</a></li>
+<li class="chapter" data-level="4.4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#whats-in-this-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in this data?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
-<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
-<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
-<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
-<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
@@ -267,6 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+<li class="chapter" data-level="15" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html"><i class="fa fa-check"></i><b>15</b> Appendix: Maps Digitised Newspapers around the World</a><ul>
+<li class="chapter" data-level="15.1" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html#united-states"><i class="fa fa-check"></i><b>15.1</b> United States</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -276,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Short Guide to Historical Newspaper Data, Using R</a>
           </h1>
         </div>
 
@@ -347,25 +351,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">altofile =<span class="st"> </span>altofile <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">str_extract</span>(<span class="st">&quot;(?&lt;=CONTENT=</span><span class="ch">\&quot;</span><span class="st">)(.*?)(?=WC)|(?&lt;=&lt;TextBlock ID=)(.*?)(?= HPOS=)&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">        </span><span class="kw">discard</span>(is.na) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as_tibble</span>()</a></code></pre></div>
-<pre><code>## Warning: Calling `as_tibble()` on a vector is discouraged, because the behavior is likely to change in the future. Use `tibble::enframe(name = NULL)` instead.
-## This warning is displayed once per session.</code></pre>
 <p>Now I have a dataframe with a single column, which is every textblock, textline and word in the ALTO file. Now we need to extract the textblock IDs, put them in a separate column, and then fill() each textblock ID down until it reaches the next one.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">altofile =<span class="st"> </span>altofile <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pa =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(value,</a>
-<a class="sourceLine" id="cb100-3" data-line-number="3">                                <span class="st">&quot;pa[0-9]{7}&quot;</span>),</a>
-<a class="sourceLine" id="cb100-4" data-line-number="4">                     <span class="kw">str_extract</span>(value, <span class="st">&quot;pa[0-9]{7}&quot;</span>), <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="st">    </span><span class="kw">fill</span>(pa)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">altofile =<span class="st"> </span>altofile <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pa =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(value,</a>
+<a class="sourceLine" id="cb99-3" data-line-number="3">                                <span class="st">&quot;pa[0-9]{7}&quot;</span>),</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4">                     <span class="kw">str_extract</span>(value, <span class="st">&quot;pa[0-9]{7}&quot;</span>), <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="st">    </span><span class="kw">fill</span>(pa)</a></code></pre></div>
 <p>Now we get rid of the textblock lines in the column which should contain words, and get rid of some other tags which have come through:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">altofile =<span class="st"> </span>altofile <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(pa, <span class="st">&quot;pa[0-9]{7}&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(value, <span class="st">&quot;pa[0-9]{7}&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart1 SUBS_CONTENT=&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;STYLE=</span><span class="ch">\&quot;</span><span class="st">subscript</span><span class="ch">\&quot;</span><span class="st"> &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-7" data-line-number="7"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart1 SUBS_CONTENT=&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-8" data-line-number="8"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart2 SUBS_CONTENT=&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">altofile =<span class="st"> </span>altofile <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(pa, <span class="st">&quot;pa[0-9]{7}&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(value, <span class="st">&quot;pa[0-9]{7}&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart1 SUBS_CONTENT=&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;STYLE=</span><span class="ch">\&quot;</span><span class="st">subscript</span><span class="ch">\&quot;</span><span class="st"> &quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart1 SUBS_CONTENT=&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-8" data-line-number="8"><span class="st">   </span><span class="kw">mutate</span>(<span class="dt">value =</span> <span class="kw">str_remove_all</span>(value, <span class="st">&quot;SUBS_TYPE=HypPart2 SUBS_CONTENT=&quot;</span>))</a></code></pre></div>
 <p>Ta-da! A dataframe with individual words on one side and the text block on the other.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">head</span>(altofile)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">head</span>(altofile)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   value     pa       
 ##   &lt;chr&gt;     &lt;chr&gt;    
@@ -376,167 +378,167 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 &quot;Chrini &quot; pa0001004
 ## 6 &quot;Iron &quot;   pa0001005</code></pre>
 <p>This is the second function:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">make_articles &lt;-<span class="st"> </span><span class="cf">function</span>(foldername){</a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">    </a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">   metsfilename =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, </a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">                                        <span class="dt">all.files =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">                                        <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb104-6" data-line-number="6">                                        <span class="dt">full.names =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb104-7" data-line-number="7">                             <span class="st">&quot;.*mets.xml&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="st">     </span><span class="kw">discard</span>(is.na)</a>
-<a class="sourceLine" id="cb104-9" data-line-number="9">    </a>
-<a class="sourceLine" id="cb104-10" data-line-number="10">    csvfoldername =<span class="st"> </span>metsfilename <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_remove</span>(<span class="st">&quot;_mets.xml&quot;</span>)</a>
-<a class="sourceLine" id="cb104-11" data-line-number="11">    </a>
-<a class="sourceLine" id="cb104-12" data-line-number="12">    metsfile =<span class="st"> </span><span class="kw">read_file</span>(metsfilename)</a>
-<a class="sourceLine" id="cb104-13" data-line-number="13">    </a>
-<a class="sourceLine" id="cb104-14" data-line-number="14">    page_list =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, </a>
-<a class="sourceLine" id="cb104-15" data-line-number="15">                                      <span class="dt">all.files =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb104-16" data-line-number="16">                                      <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb104-17" data-line-number="17">                                      <span class="dt">full.names =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb104-18" data-line-number="18">                           <span class="st">&quot;.*[0-9]{4}.xml&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-19" data-line-number="19"><span class="st">    </span><span class="kw">discard</span>(is.na)</a>
-<a class="sourceLine" id="cb104-20" data-line-number="20">    </a>
-<a class="sourceLine" id="cb104-21" data-line-number="21">    </a>
-<a class="sourceLine" id="cb104-22" data-line-number="22">    </a>
-<a class="sourceLine" id="cb104-23" data-line-number="23">        metspagegroups =<span class="st"> </span>metsfile <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-24" data-line-number="24"><span class="st">          </span><span class="kw">str_split</span>(<span class="st">&quot;&lt;mets:smLinkGrp&gt;&quot;</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-25" data-line-number="25"><span class="st">    </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-26" data-line-number="26"><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-27" data-line-number="27"><span class="st">          </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(value, <span class="st">&#39;#art[0-9]{4}&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-28" data-line-number="28"><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">articleid =</span> <span class="kw">str_extract</span>(value,<span class="st">&quot;[0-9]{4}&quot;</span>)) </a>
-<a class="sourceLine" id="cb104-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb104-30" data-line-number="30">    </a>
-<a class="sourceLine" id="cb104-31" data-line-number="31">     <span class="kw">future_map</span>(page_list, get_page) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-32" data-line-number="32"><span class="st">       </span><span class="kw">bind_rows</span>()  <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-33" data-line-number="33"><span class="st">       </span><span class="kw">left_join</span>(<span class="kw">extract_page_groups</span>(metspagegroups<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-34" data-line-number="34"><span class="st">                                    </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-35" data-line-number="35"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">art =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(id, <span class="st">&quot;art&quot;</span>), </a>
-<a class="sourceLine" id="cb104-36" data-line-number="36">                            <span class="kw">str_extract</span>(id, <span class="st">&quot;[0-9]{4}&quot;</span>), <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-37" data-line-number="37"><span class="st">        </span><span class="kw">fill</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-38" data-line-number="38"><span class="st">          </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(id, </a>
-<a class="sourceLine" id="cb104-39" data-line-number="39">                             <span class="st">&quot;art[0-9]{4}&quot;</span>)),</a>
-<a class="sourceLine" id="cb104-40" data-line-number="40">        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;pa&#39;</span> =<span class="st"> &#39;id&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-41" data-line-number="41"><span class="st">      </span><span class="kw">group_by</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-42" data-line-number="42"><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">text =</span> <span class="kw">paste0</span>(value, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-43" data-line-number="43"><span class="st">       </span><span class="kw">mutate</span>(<span class="dt">issue_name =</span> metsfilename ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-44" data-line-number="44"><span class="st">       </span><span class="kw">write_csv</span>(<span class="dt">path =</span> <span class="kw">paste0</span>(csvfoldername, <span class="st">&quot;.csv&quot;</span>))</a>
-<a class="sourceLine" id="cb104-45" data-line-number="45"></a>
-<a class="sourceLine" id="cb104-46" data-line-number="46"></a>
-<a class="sourceLine" id="cb104-47" data-line-number="47">}</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">make_articles &lt;-<span class="st"> </span><span class="cf">function</span>(foldername){</a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">    </a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">   metsfilename =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, </a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">                                        <span class="dt">all.files =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">                                        <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">                                        <span class="dt">full.names =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb103-7" data-line-number="7">                             <span class="st">&quot;.*mets.xml&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-8" data-line-number="8"><span class="st">     </span><span class="kw">discard</span>(is.na)</a>
+<a class="sourceLine" id="cb103-9" data-line-number="9">    </a>
+<a class="sourceLine" id="cb103-10" data-line-number="10">    csvfoldername =<span class="st"> </span>metsfilename <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_remove</span>(<span class="st">&quot;_mets.xml&quot;</span>)</a>
+<a class="sourceLine" id="cb103-11" data-line-number="11">    </a>
+<a class="sourceLine" id="cb103-12" data-line-number="12">    metsfile =<span class="st"> </span><span class="kw">read_file</span>(metsfilename)</a>
+<a class="sourceLine" id="cb103-13" data-line-number="13">    </a>
+<a class="sourceLine" id="cb103-14" data-line-number="14">    page_list =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, </a>
+<a class="sourceLine" id="cb103-15" data-line-number="15">                                      <span class="dt">all.files =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb103-16" data-line-number="16">                                      <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb103-17" data-line-number="17">                                      <span class="dt">full.names =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb103-18" data-line-number="18">                           <span class="st">&quot;.*[0-9]{4}.xml&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-19" data-line-number="19"><span class="st">    </span><span class="kw">discard</span>(is.na)</a>
+<a class="sourceLine" id="cb103-20" data-line-number="20">    </a>
+<a class="sourceLine" id="cb103-21" data-line-number="21">    </a>
+<a class="sourceLine" id="cb103-22" data-line-number="22">    </a>
+<a class="sourceLine" id="cb103-23" data-line-number="23">        metspagegroups =<span class="st"> </span>metsfile <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-24" data-line-number="24"><span class="st">          </span><span class="kw">str_split</span>(<span class="st">&quot;&lt;mets:smLinkGrp&gt;&quot;</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-25" data-line-number="25"><span class="st">    </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-26" data-line-number="26"><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-27" data-line-number="27"><span class="st">          </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(value, <span class="st">&#39;#art[0-9]{4}&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-28" data-line-number="28"><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">articleid =</span> <span class="kw">str_extract</span>(value,<span class="st">&quot;[0-9]{4}&quot;</span>)) </a>
+<a class="sourceLine" id="cb103-29" data-line-number="29"></a>
+<a class="sourceLine" id="cb103-30" data-line-number="30">    </a>
+<a class="sourceLine" id="cb103-31" data-line-number="31">     <span class="kw">future_map</span>(page_list, get_page) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-32" data-line-number="32"><span class="st">       </span><span class="kw">bind_rows</span>()  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-33" data-line-number="33"><span class="st">       </span><span class="kw">left_join</span>(<span class="kw">extract_page_groups</span>(metspagegroups<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-34" data-line-number="34"><span class="st">                                    </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-35" data-line-number="35"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">art =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(id, <span class="st">&quot;art&quot;</span>), </a>
+<a class="sourceLine" id="cb103-36" data-line-number="36">                            <span class="kw">str_extract</span>(id, <span class="st">&quot;[0-9]{4}&quot;</span>), <span class="ot">NA</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-37" data-line-number="37"><span class="st">        </span><span class="kw">fill</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-38" data-line-number="38"><span class="st">          </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(id, </a>
+<a class="sourceLine" id="cb103-39" data-line-number="39">                             <span class="st">&quot;art[0-9]{4}&quot;</span>)),</a>
+<a class="sourceLine" id="cb103-40" data-line-number="40">        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;pa&#39;</span> =<span class="st"> &#39;id&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-41" data-line-number="41"><span class="st">      </span><span class="kw">group_by</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-42" data-line-number="42"><span class="st">      </span><span class="kw">summarise</span>(<span class="dt">text =</span> <span class="kw">paste0</span>(value, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-43" data-line-number="43"><span class="st">       </span><span class="kw">mutate</span>(<span class="dt">issue_name =</span> metsfilename ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-44" data-line-number="44"><span class="st">       </span><span class="kw">write_csv</span>(<span class="dt">path =</span> <span class="kw">paste0</span>(csvfoldername, <span class="st">&quot;.csv&quot;</span>))</a>
+<a class="sourceLine" id="cb103-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb103-46" data-line-number="46"></a>
+<a class="sourceLine" id="cb103-47" data-line-number="47">}</a></code></pre></div>
 <p>It’s a bit more complicated, and a bit of a fudge. Because there are multiple ALTO pages for one METS file, we need to read in all the ALTO files, run our get_pages() function on them within <em>this</em> function, bind them altogether, and then join that to a METS file which contains an article ID and all the corresponding textBlocks. I’ll try to break it down into components:</p>
 <p>It takes an argument called ‘foldername’. This should be a list of issue folders - which is that final folder, in the format mmdd, which contains a single issue. we can pass a list of folder names using furrr, and it will run the function of each folder in turn.</p>
 <p>To break it down, with a single folder:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">foldername =<span class="st"> &quot;newspapers/0002083/1853/0924/&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">foldername =<span class="st"> &quot;newspapers/0002083/1853/0924/&quot;</span></a></code></pre></div>
 <p>Using the folder name as the last part of the file path, and then a regular expression to get only a file ending in mets.xml, this will get the correct METS file name and read it into memory:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">metsfilename =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, <span class="dt">all.files =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>), <span class="st">&quot;.*mets.xml&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">    </span><span class="kw">discard</span>(is.na)</a></code></pre></div>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">metsfile =<span class="st"> </span><span class="kw">read_file</span>(metsfilename)</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">metsfilename =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, <span class="dt">all.files =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>), <span class="st">&quot;.*mets.xml&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">    </span><span class="kw">discard</span>(is.na)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">metsfile =<span class="st"> </span><span class="kw">read_file</span>(metsfilename)</a></code></pre></div>
 <p>We also need to call the .csv (which we’re going to have as an output) a unique name:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">csvfoldername =<span class="st"> </span>metsfilename <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_remove</span>(<span class="st">&quot;_mets.xml&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">csvfoldername =<span class="st"> </span>metsfilename <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">str_remove</span>(<span class="st">&quot;_mets.xml&quot;</span>)</a></code></pre></div>
 <p>Next we have to grab all the ALTO files in the same folder, using the same method:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">page_list =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, <span class="dt">all.files =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>), <span class="st">&quot;.*[0-9]{4}.xml&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">    </span><span class="kw">discard</span>(is.na)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">page_list =<span class="st">  </span><span class="kw">str_match</span>(<span class="kw">list.files</span>(<span class="dt">path =</span> foldername, <span class="dt">all.files =</span> <span class="ot">TRUE</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>), <span class="st">&quot;.*[0-9]{4}.xml&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">    </span><span class="kw">discard</span>(is.na)</a></code></pre></div>
 <p>Next we need the file which lists all the pagegroups and corresponding articles.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">metspagegroups =<span class="st"> </span>metsfile <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot;&lt;mets:smLinkGrp&gt;&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="st">    </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(value, <span class="st">&#39;#art[0-9]{4}&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">articleid =</span> <span class="kw">str_extract</span>(value,<span class="st">&quot;[0-9]{4}&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">metspagegroups =<span class="st"> </span>metsfile <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">  </span><span class="kw">str_split</span>(<span class="st">&quot;&lt;mets:smLinkGrp&gt;&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="st">    </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">    </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(value, <span class="st">&#39;#art[0-9]{4}&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">articleid =</span> <span class="kw">str_extract</span>(value,<span class="st">&quot;[0-9]{4}&quot;</span>))</a></code></pre></div>
 <p>The next bit uses a function written by brodrigues called extractor()</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">extractor &lt;-<span class="st"> </span><span class="cf">function</span>(string, regex, <span class="dt">all =</span> <span class="ot">FALSE</span>){</a>
-<a class="sourceLine" id="cb111-2" data-line-number="2">    <span class="cf">if</span>(all) {</a>
-<a class="sourceLine" id="cb111-3" data-line-number="3">        string <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="st">            </span><span class="kw">str_extract_all</span>(regex) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="st">            </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="st">            </span><span class="kw">str_extract_all</span>(<span class="st">&quot;[:alnum:]+&quot;</span>, <span class="dt">simplify =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="st">            </span><span class="kw">map</span>(paste, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="st">            </span><span class="kw">flatten_chr</span>()</a>
-<a class="sourceLine" id="cb111-9" data-line-number="9">    } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb111-10" data-line-number="10">        string <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-11" data-line-number="11"><span class="st">            </span><span class="kw">str_extract</span>(regex) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-12" data-line-number="12"><span class="st">            </span><span class="kw">str_extract_all</span>(<span class="st">&quot;[:alnum:]+&quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-13" data-line-number="13"><span class="st">            </span><span class="kw">paste</span>(<span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb111-14" data-line-number="14"><span class="st">            </span><span class="kw">tolower</span>()</a>
-<a class="sourceLine" id="cb111-15" data-line-number="15">    }</a>
-<a class="sourceLine" id="cb111-16" data-line-number="16">}</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">extractor &lt;-<span class="st"> </span><span class="cf">function</span>(string, regex, <span class="dt">all =</span> <span class="ot">FALSE</span>){</a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">    <span class="cf">if</span>(all) {</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">        string <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="st">            </span><span class="kw">str_extract_all</span>(regex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="st">            </span><span class="kw">flatten_chr</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="st">            </span><span class="kw">str_extract_all</span>(<span class="st">&quot;[:alnum:]+&quot;</span>, <span class="dt">simplify =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="st">            </span><span class="kw">map</span>(paste, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-8" data-line-number="8"><span class="st">            </span><span class="kw">flatten_chr</span>()</a>
+<a class="sourceLine" id="cb110-9" data-line-number="9">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb110-10" data-line-number="10">        string <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-11" data-line-number="11"><span class="st">            </span><span class="kw">str_extract</span>(regex) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-12" data-line-number="12"><span class="st">            </span><span class="kw">str_extract_all</span>(<span class="st">&quot;[:alnum:]+&quot;</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-13" data-line-number="13"><span class="st">            </span><span class="kw">paste</span>(<span class="dt">collapse =</span> <span class="st">&quot; &quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb110-14" data-line-number="14"><span class="st">            </span><span class="kw">tolower</span>()</a>
+<a class="sourceLine" id="cb110-15" data-line-number="15">    }</a>
+<a class="sourceLine" id="cb110-16" data-line-number="16">}</a></code></pre></div>
 <p>We also need another function which extracts the correct pagegroups:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">extract_page_groups &lt;-<span class="st"> </span><span class="cf">function</span>(article){</a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3">    id &lt;-<span class="st"> </span>article <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="st">        </span><span class="kw">extractor</span>(<span class="st">&quot;(?&lt;=&lt;mets:smLocatorLink xlink:href=</span><span class="ch">\&quot;</span><span class="st">#)(.*?)(?=</span><span class="ch">\&quot;</span><span class="st"> xlink:label=</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>, </a>
-<a class="sourceLine" id="cb112-5" data-line-number="5">                  <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb112-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb112-7" data-line-number="7">    type =<span class="st"> </span></a>
-<a class="sourceLine" id="cb112-8" data-line-number="8"><span class="st">    </span>tibble<span class="op">::</span><span class="kw">tribble</span>(<span class="op">~</span>id,</a>
-<a class="sourceLine" id="cb112-9" data-line-number="9">                    id) </a>
-<a class="sourceLine" id="cb112-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">extract_page_groups &lt;-<span class="st"> </span><span class="cf">function</span>(article){</a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3">    id &lt;-<span class="st"> </span>article <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="st">        </span><span class="kw">extractor</span>(<span class="st">&quot;(?&lt;=&lt;mets:smLocatorLink xlink:href=</span><span class="ch">\&quot;</span><span class="st">#)(.*?)(?=</span><span class="ch">\&quot;</span><span class="st"> xlink:label=</span><span class="ch">\&quot;</span><span class="st">)&quot;</span>, </a>
+<a class="sourceLine" id="cb111-5" data-line-number="5">                  <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb111-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7">    type =<span class="st"> </span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="st">    </span>tibble<span class="op">::</span><span class="kw">tribble</span>(<span class="op">~</span>id,</a>
+<a class="sourceLine" id="cb111-9" data-line-number="9">                    id) </a>
+<a class="sourceLine" id="cb111-10" data-line-number="10">}</a></code></pre></div>
 <p>Next this takes the list of ALTO files, and applies the get_page() function to each item, then binds the four files together vertically. I’ll give it a random variable name, even though it doesn’t need one in the function because we just pipe it along to the csv.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">t =<span class="st"> </span><span class="kw">future_map</span>(page_list, get_page) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="st">  </span><span class="kw">bind_rows</span>()</a>
-<a class="sourceLine" id="cb113-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="kw">head</span>(t)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">t =<span class="st"> </span><span class="kw">future_map</span>(page_list, get_page) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">bind_rows</span>()</a>
+<a class="sourceLine" id="cb112-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="kw">head</span>(t)</a></code></pre></div>
 <p>This extracts the page groups from the mets dataframe we made, and turns it into a dataframe with the article ID as a number, again extracting and filtering using regular expressions, and using fill(). The result is a dataframe of every word, plus their article and text block.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">t =<span class="st"> </span>t <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">extract_page_groups</span>(metspagegroups<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">                                    </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">art =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(id, <span class="st">&quot;art&quot;</span>), </a>
-<a class="sourceLine" id="cb114-5" data-line-number="5">                            <span class="kw">str_extract</span>(id, </a>
-<a class="sourceLine" id="cb114-6" data-line-number="6">                                        <span class="st">&quot;[0-9]{4}&quot;</span>), <span class="ot">NA</span>))<span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-7" data-line-number="7"><span class="st">          </span><span class="kw">fill</span>(art), </a>
-<a class="sourceLine" id="cb114-8" data-line-number="8">        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;pa&#39;</span> =<span class="st"> &#39;id&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="st">  </span><span class="kw">fill</span>(art)</a>
-<a class="sourceLine" id="cb114-10" data-line-number="10">        </a>
-<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="kw">head</span>(t, <span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">t =<span class="st"> </span>t <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">extract_page_groups</span>(metspagegroups<span class="op">$</span>value) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="st">                                    </span><span class="kw">unnest</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">art =</span> <span class="kw">ifelse</span>(<span class="kw">str_detect</span>(id, <span class="st">&quot;art&quot;</span>), </a>
+<a class="sourceLine" id="cb113-5" data-line-number="5">                            <span class="kw">str_extract</span>(id, </a>
+<a class="sourceLine" id="cb113-6" data-line-number="6">                                        <span class="st">&quot;[0-9]{4}&quot;</span>), <span class="ot">NA</span>))<span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7"><span class="st">          </span><span class="kw">fill</span>(art), </a>
+<a class="sourceLine" id="cb113-8" data-line-number="8">        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&#39;pa&#39;</span> =<span class="st"> &#39;id&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb113-9" data-line-number="9"><span class="st">  </span><span class="kw">fill</span>(art)</a>
+<a class="sourceLine" id="cb113-10" data-line-number="10">        </a>
+<a class="sourceLine" id="cb113-11" data-line-number="11"><span class="kw">head</span>(t, <span class="dv">50</span>)</a></code></pre></div>
 <p>Next we use summarise() and paste() to group the words into the individual articles, and add the mets filename so that we also can extract the issue date afterwards.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"> t =<span class="st"> </span>t <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">text =</span> <span class="kw">paste0</span>(value, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">       </span><span class="kw">mutate</span>(<span class="dt">issue_name =</span> metsfilename ) </a>
-<a class="sourceLine" id="cb115-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="kw">head</span>(t, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"> t =<span class="st"> </span>t <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(art) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">text =</span> <span class="kw">paste0</span>(value, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="st">       </span><span class="kw">mutate</span>(<span class="dt">issue_name =</span> metsfilename ) </a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="kw">head</span>(t, <span class="dv">10</span>)</a></code></pre></div>
 <p>And finally write to .csv using the csvfoldername we created:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">t <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">       </span><span class="kw">write_csv</span>(<span class="dt">path =</span> <span class="kw">paste0</span>(csvfoldername, <span class="st">&quot;.csv&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">t <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="st">       </span><span class="kw">write_csv</span>(<span class="dt">path =</span> <span class="kw">paste0</span>(csvfoldername, <span class="st">&quot;.csv&quot;</span>))</a></code></pre></div>
 <p>To run it on a bunch of folders, you’ll need to make a list of paths to all the issue folders you want to process. You can do this using <code>list_dirs</code>. You <em>only</em> want these final-level issue folders, otherwise it will try to work on an empty folder and give an error. This means that if you want to work on multiple years or issues, you’ll need to figure out how to pass a list of just the isuse level folder paths. Here I’ve done it by excluding any pathnames which are shorter than the correct number for an issue-level folder.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002083/&quot;</span>, </a>
-<a class="sourceLine" id="cb117-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb117-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb117-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb117-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002083/&quot;</span>, </a>
+<a class="sourceLine" id="cb116-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb116-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
 <p>Finally, this applies the function make_articles() to everything in the folderslist vector. It will write a new .csv file into each of the folders, containing the article text and codes. You can add whatever folders you like to a vector called folderlist, and it will generate a csv of articles for each one.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
 <p>Do the same for the other two NLPs:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002084/&quot;</span>, </a>
-<a class="sourceLine" id="cb119-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb119-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb119-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb119-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002084/&quot;</span>, </a>
+<a class="sourceLine" id="cb118-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb118-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb118-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb118-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
 <p>Finally, this applies the function make_articles() to everything in the folderslist vector. It will write a new .csv file into each of the folders, containing the article text and codes. You can add whatever folders you like to a vector called folderlist, and it will generate a csv of articles for each one.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002085/&quot;</span>, </a>
-<a class="sourceLine" id="cb121-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb121-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb121-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb121-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">folderlist =<span class="st"> </span><span class="kw">list.dirs</span>(<span class="st">&quot;newspapers/0002085/&quot;</span>, </a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">                       <span class="dt">full.names =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">                       <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb120-5" data-line-number="5">folderlist =<span class="st"> </span>folderlist[<span class="kw">nchar</span>(folderlist)<span class="op">&gt;</span><span class="dv">24</span>]</a></code></pre></div>
 <p>Finally, this applies the function make_articles() to everything in the folderslist vector. It will write a new .csv file into each of the folders, containing the article text and codes. You can add whatever folders you like to a vector called folderlist, and it will generate a csv of articles for each one.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">future_map</span>(folderlist, make_articles)</a></code></pre></div>
 <p>It’s not very fast (I think it can take 10 or 20 seconds per issue, so bear that in mind), but <em>eventually</em> you should now have a .csv file in each of the issue folders, with a row per line.</p>
 <p>Some last pre-processing steps: Make a dataframe containing all the .csv files, which is easier to work with, add a unique code for each article, and extract date and title information from the file path (I’ve put more information on this in comments in the code below). Save this to R’s data format using <code>save()</code>, for use later.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">news_sample_dataframe =<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;newspapers/&quot;</span>, </a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">                                   <span class="dt">pattern =</span> <span class="st">&quot;csv&quot;</span>, </a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">                                   <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb123-4" data-line-number="4">                                   <span class="dt">full.names =</span> <span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">read_csv</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb123-6" data-line-number="6"><span class="st">  </span><span class="co">#filter(is.na(headline)) %&gt;% # These two lines take all the newly created csv files and read them into one dataframe</span></a>
-<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="st">  </span><span class="kw">separate</span>(issue_name, </a>
-<a class="sourceLine" id="cb123-8" data-line-number="8">           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># separate the filename into some arbitrarily named colums</span></a>
-<a class="sourceLine" id="cb123-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(art, text, b, d, e) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the ones which contain information on the title and date</span></a>
-<a class="sourceLine" id="cb123-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(art, text, <span class="dt">title =</span> b,  <span class="dt">year =</span> d, <span class="dt">date =</span> e) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># change their names</span></a>
-<a class="sourceLine" id="cb123-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">full_date =</span> <span class="kw">as.Date</span>(<span class="kw">paste0</span>(year,date), <span class="st">&#39;%Y%m%d&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># make a date column, and turn it into date format</span></a>
-<a class="sourceLine" id="cb123-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">article_code =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># give every article a unique code</span></a>
-<a class="sourceLine" id="cb123-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(article_code, <span class="kw">everything</span>())<span class="co"># select all columns</span></a></code></pre></div>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">save</span>(news_sample_dataframe, <span class="dt">file =</span> <span class="st">&#39;news_sample_dataframe&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">news_sample_dataframe =<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&quot;newspapers/&quot;</span>, </a>
+<a class="sourceLine" id="cb122-2" data-line-number="2">                                   <span class="dt">pattern =</span> <span class="st">&quot;csv&quot;</span>, </a>
+<a class="sourceLine" id="cb122-3" data-line-number="3">                                   <span class="dt">recursive =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb122-4" data-line-number="4">                                   <span class="dt">full.names =</span> <span class="ot">TRUE</span>)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="st">    </span><span class="kw">map_df</span>(<span class="op">~</span><span class="kw">read_csv</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"><span class="st">  </span><span class="co">#filter(is.na(headline)) %&gt;% # These two lines take all the newly created csv files and read them into one dataframe</span></a>
+<a class="sourceLine" id="cb122-7" data-line-number="7"><span class="st">  </span><span class="kw">separate</span>(issue_name, </a>
+<a class="sourceLine" id="cb122-8" data-line-number="8">           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># separate the filename into some arbitrarily named colums</span></a>
+<a class="sourceLine" id="cb122-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(art, text, b, d, e) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># select the ones which contain information on the title and date</span></a>
+<a class="sourceLine" id="cb122-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(art, text, <span class="dt">title =</span> b,  <span class="dt">year =</span> d, <span class="dt">date =</span> e) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># change their names</span></a>
+<a class="sourceLine" id="cb122-11" data-line-number="11"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">full_date =</span> <span class="kw">as.Date</span>(<span class="kw">paste0</span>(year,date), <span class="st">&#39;%Y%m%d&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># make a date column, and turn it into date format</span></a>
+<a class="sourceLine" id="cb122-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">article_code =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># give every article a unique code</span></a>
+<a class="sourceLine" id="cb122-13" data-line-number="13"><span class="st">  </span><span class="kw">select</span>(article_code, <span class="kw">everything</span>())<span class="co"># select all columns</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">save</span>(news_sample_dataframe, <span class="dt">file =</span> <span class="st">&#39;news_sample_dataframe&#39;</span>)</a></code></pre></div>
 <p>This <code>news_sample_dataframe</code> will be used for some basic text mining examples:</p>
 <ul>
 <li>word frequency count</li>

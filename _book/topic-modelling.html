@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12 Topic modelling | A short guide to using British Library Newspaper Data, using R</title>
+  <title>12 Topic modelling | A Short Guide to Historical Newspaper Data, Using R</title>
   <meta name="description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12 Topic modelling | A short guide to using British Library Newspaper Data, using R" />
+  <meta property="og:title" content="12 Topic modelling | A Short Guide to Historical Newspaper Data, Using R" />
   <meta property="og:type" content="book" />
   
   
   <meta property="og:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
-  <meta name="github-repo" content="yannryanBL/r-for-news-data" />
+  <meta name="github-repo" content="yannryan-irl/r-for-newspapers-data" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12 Topic modelling | A short guide to using British Library Newspaper Data, using R" />
+  <meta name="twitter:title" content="12 Topic modelling | A Short Guide to Historical Newspaper Data, Using R" />
   
   <meta name="twitter:description" content="This is a handbook to help new and existing users find, process and analyse historical newspaper data, using the programming language R, and its IDE R-Studio" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Yann Ryan" />
 
 
-<meta name="date" content="2020-04-02" />
+<meta name="date" content="2020-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -57,7 +57,7 @@
 <script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
 
 
 <style type="text/css">
@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#who-is-the-guide-for"><i class="fa fa-check"></i><b>2.6</b> Who is the guide for?</a></li>
 <li class="chapter" data-level="2.7" data-path="introduction.html"><a href="introduction.html#format-of-the-book"><i class="fa fa-check"></i><b>2.7</b> Format of the book</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction.html"><a href="introduction.html#contribute"><i class="fa fa-check"></i><b>2.8</b> Contribute</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html"><i class="fa fa-check"></i><b>3</b> UK Newspaper Data</a><ul>
 <li class="chapter" data-level="3.1" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#intro-to-british-library-newspapers"><i class="fa fa-check"></i><b>3.1</b> Intro to British Library Newspapers</a></li>
@@ -160,19 +161,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.4" data-path="uk-newspaper-data.html"><a href="uk-newspaper-data.html#you-want-to-do-something-involving-the-images-such-as-computer-vision-techniques"><i class="fa fa-check"></i><b>3.6.4</b> You want to do something involving the images, such as computer vision techniques,</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html"><i class="fa fa-check"></i><b>4</b> OCR and its problems</a><ul>
-<li class="chapter" data-level="4.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#what-is-it-like-in-bl-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in BL newspapers?</a></li>
-<li class="chapter" data-level="4.3" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#ocr-report-on-the-first-two-batches-of-content-on-the-bl-open-repository"><i class="fa fa-check"></i><b>4.3</b> OCR report on the first two batches of content on the BL Open Repository</a></li>
-<li class="chapter" data-level="4.4" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
-<li class="chapter" data-level="4.5" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#whats-in-the-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in the data?</a></li>
+<li class="chapter" data-level="4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html"><i class="fa fa-check"></i><b>4</b> Historic Newspaper OCR Accuracy</a><ul>
+<li class="chapter" data-level="4.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#introduction-1"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#what-is-it-like-in-19th-century-newspapers"><i class="fa fa-check"></i><b>4.2</b> What is it like in 19th century newspapers?</a></li>
+<li class="chapter" data-level="4.3" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#ocr-report-on-some-batches-of-historical-newspapers"><i class="fa fa-check"></i><b>4.3</b> OCR report on some batches of historical newspapers</a></li>
+<li class="chapter" data-level="4.4" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#extract-predicted-word-scores-from-the-alto-pages"><i class="fa fa-check"></i><b>4.4</b> Extract predicted word scores from the ALTO pages</a></li>
+<li class="chapter" data-level="4.5" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#visualisations"><i class="fa fa-check"></i><b>4.5</b> Visualisations:</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#whats-in-this-data"><i class="fa fa-check"></i><b>4.5.1</b> What’s in this data?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
-<li class="chapter" data-level="4.7" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
-<li class="chapter" data-level="4.8" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
-<li class="chapter" data-level="4.9" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
-<li class="chapter" data-level="4.10" data-path="ocr-and-its-problems.html"><a href="ocr-and-its-problems.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
+<li class="chapter" data-level="4.6" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#highest-and-lowest-results"><i class="fa fa-check"></i><b>4.6</b> Highest and lowest results:</a></li>
+<li class="chapter" data-level="4.7" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#page-by-page-ocr-visualisation"><i class="fa fa-check"></i><b>4.7</b> Page-by-page OCR visualisation</a></li>
+<li class="chapter" data-level="4.8" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#microfilm-vs-print"><i class="fa fa-check"></i><b>4.8</b> Microfilm vs print:</a></li>
+<li class="chapter" data-level="4.9" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#conclusions"><i class="fa fa-check"></i><b>4.9</b> Conclusions</a></li>
+<li class="chapter" data-level="4.10" data-path="historic-newspaper-ocr-accuracy.html"><a href="historic-newspaper-ocr-accuracy.html#impact-on-analysis"><i class="fa fa-check"></i><b>4.10</b> Impact on analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Quick introduction to R and the tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="quick-introduction-to-r-and-the-tidyverse.html"><a href="quick-introduction-to-r-and-the-tidyverse.html#what-is-r-and-why-should-you-use-it"><i class="fa fa-check"></i><b>5.1</b> What is R and why should you use it?</a></li>
@@ -267,6 +268,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="detecting-text-reuse-in-newspaper-articles-.html"><a href="detecting-text-reuse-in-newspaper-articles-.html#further-reading-1"><i class="fa fa-check"></i><b>13.3</b> Further reading</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="further-reading-2.html"><a href="further-reading-2.html"><i class="fa fa-check"></i><b>14</b> Further reading</a></li>
+<li class="chapter" data-level="15" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html"><i class="fa fa-check"></i><b>15</b> Appendix: Maps Digitised Newspapers around the World</a><ul>
+<li class="chapter" data-level="15.1" data-path="appendix-maps-digitised-newspapers-around-the-world.html"><a href="appendix-maps-digitised-newspapers-around-the-world.html#united-states"><i class="fa fa-check"></i><b>15.1</b> United States</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -276,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A short guide to using British Library Newspaper Data, using R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Short Guide to Historical Newspaper Data, Using R</a>
           </h1>
         </div>
 
@@ -290,39 +294,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="topic-modelling-with-the-library-topicmodels" class="section level2">
 <h2><span class="header-section-number">12.1</span> Topic modelling with the library ‘topicmodels’</h2>
 <p>First, load and install the relevant lirbraries. If you’ve loaded the notebooks into Rstudio, it should detect and ask if you want to install any missing ones, but you might need to use <code>install_packages()</code> if not.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb184-2" data-line-number="2"><span class="kw">library</span>(tidytext)</a>
-<a class="sourceLine" id="cb184-3" data-line-number="3"><span class="kw">library</span>(topicmodels)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="kw">library</span>(tidytext)</a>
+<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="kw">library</span>(topicmodels)</a></code></pre></div>
 </div>
 <div id="load-the-tokenised-dataframe" class="section level2">
 <h2><span class="header-section-number">12.2</span> Load the tokenised dataframe</h2>
 <p>Load the tokenised dataframe created in the term_frequency notebook - this is the dataframe with one word per row.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;tokenised_news_sample&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;tokenised_news_sample&#39;</span>)</a></code></pre></div>
 </div>
 <div id="create-a-dataframe-of-word-counts-with-tf_idf-scores" class="section level2">
 <h2><span class="header-section-number">12.3</span> Create a dataframe of word counts with tf_idf scores</h2>
 <p>Like in the tf_idf notebook, make a dataframe of the words in each document, with the count and the tf-idf score. This will be used to filter and weight the text data.</p>
 <p>First, get the word counts for each article. An optional step would be to filter to include only English-language words and some common nouns.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">issue_words =<span class="st"> </span>tokenised_news_sample <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(word <span class="op">%in%</span><span class="st"> </span>grady_augmented) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">issue_code =</span> <span class="kw">paste0</span>(title, full_date)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(issue_code, word) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb186-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb186-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">issue_words =<span class="st"> </span>tokenised_news_sample <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(word <span class="op">%in%</span><span class="st"> </span>grady_augmented) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb185-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">issue_code =</span> <span class="kw">paste0</span>(title, full_date)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb185-4" data-line-number="4"><span class="st">  </span><span class="kw">group_by</span>(issue_code, word) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb185-5" data-line-number="5"><span class="st">  </span><span class="kw">tally</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb185-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
 <p>Next, use <code>bind_tf_idf()</code> to get the tf_idf scores.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">issue_words =<span class="st"> </span>issue_words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_tf_idf</span>(word, issue_code, n)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">issue_words =<span class="st"> </span>issue_words <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_tf_idf</span>(word, issue_code, n)</a></code></pre></div>
 </div>
 <div id="make-a-document-term-matrix" class="section level2">
 <h2><span class="header-section-number">12.4</span> Make a ‘document term matrix’</h2>
 <p>Using the function <code>cast_dtm()</code> from the topicmodels package, make a document term matrix. This is a matrix with all the documents on one axis, all the words on the other, and the number of times that word appears as the value. We’ll also filter out words with a low tf-idf score, and only include words that occur at least 5 times.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">dtm_long &lt;-<span class="st"> </span>issue_words <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(tf_idf <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.00006</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="st">    </span><span class="kw">cast_dtm</span>(issue_code, word, n)</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1">dtm_long &lt;-<span class="st"> </span>issue_words <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(tf_idf <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.00006</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">5</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb187-4" data-line-number="4"><span class="st">    </span><span class="kw">cast_dtm</span>(issue_code, word, n)</a></code></pre></div>
 <p>Use the <code>LDA()</code> function to produce the model. You specify the number of topics in advance, using the argument <code>k</code>, and we’ll set the random seed to a set number for reproducibility. The method algorithm used here is known as Latent Dirichlet Allocation - it uses the distribution of words in each document to group them together into ‘topics’. It can take some time to run the model - be prepared to wait a bit.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">lda_model_long_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">LDA</span>(dtm_long,<span class="dt">k =</span> <span class="dv">25</span>, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">seed =</span> <span class="dv">1234</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">lda_model_long_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">LDA</span>(dtm_long,<span class="dt">k =</span> <span class="dv">25</span>, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">seed =</span> <span class="dv">1234</span>))</a></code></pre></div>
 <p>There are two things we can do now: first, get a list of words scored by how they contributed to each of the topics.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">result &lt;-<span class="st"> </span>tidytext<span class="op">::</span><span class="kw">tidy</span>(lda_model_long_<span class="dv">1</span>, <span class="st">&#39;beta&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1">result &lt;-<span class="st"> </span>tidytext<span class="op">::</span><span class="kw">tidy</span>(lda_model_long_<span class="dv">1</span>, <span class="st">&#39;beta&#39;</span>)</a></code></pre></div>
+<pre><code>## Warning: `tbl_df()` is deprecated as of dplyr 1.0.0.
+## Please use `tibble::as_tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <p>We can plot the top words which make up each of the topics, to get an idea of how the articles have been categorised. Some of these make sense: there’s a topic which seems to be about university and education, one with words relating to poor laws, and a couple about disease in the army, as well as some more which contain words probably related to the Crimean war.</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1">result <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb191-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(topic) <span class="op">%&gt;%</span></a>
